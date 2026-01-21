@@ -1,88 +1,24 @@
 <script>
-    import { onMount, tick } from "svelte";
+    import { onMount } from "svelte";
     import { link } from "svelte-spa-router";
     import { api } from "../lib/api.js";
 
     let featuredRecipes = [];
-    let comingSoonRecipes = [];
+    let moreRecipes = [];
     let loading = true;
     let error = null;
-
-    // Infinite carousel state
-    let carouselOffset = 0;
-    let isTransitioning = false;
-    const CARD_WIDTH = 170; // 160px card + 10px gap
-    const VISIBLE_CARDS = 8;
-
-    // Create extended array for infinite loop (original + clone of first cards at end)
-    $: extendedRecipes =
-        comingSoonRecipes.length > 0
-            ? [
-                  ...comingSoonRecipes,
-                  ...comingSoonRecipes.slice(0, VISIBLE_CARDS),
-              ]
-            : [];
 
     onMount(async () => {
         try {
             const recipes = await api.getRecipes();
             featuredRecipes = recipes.slice(0, 4);
-            // All remaining recipes go to Coming Soon carousel
-            comingSoonRecipes = recipes.slice(4);
+            moreRecipes = recipes.slice(4, 12); // Show up to 8 more recipes
         } catch (e) {
             error = e.message;
         } finally {
             loading = false;
         }
     });
-
-    async function scrollCarousel(direction) {
-        if (isTransitioning || comingSoonRecipes.length === 0) return;
-
-        const totalOriginal = comingSoonRecipes.length;
-
-        if (direction === "right") {
-            carouselOffset++;
-            isTransitioning = true;
-
-            // When we reach the cloned section, snap back to start after animation
-            if (carouselOffset >= totalOriginal) {
-                setTimeout(async () => {
-                    // Disable transition temporarily for instant snap
-                    const track = document.querySelector(".carousel-track");
-                    if (track) {
-                        track.style.transition = "none";
-                        carouselOffset = 0;
-                        await tick(); // Wait for Svelte to apply transform change
-
-                        // Force reflow
-                        void track.offsetWidth;
-                        track.style.transition = "transform 0.4s ease";
-                    }
-                    isTransitioning = false;
-                }, 400);
-            } else {
-                setTimeout(() => (isTransitioning = false), 400);
-            }
-        } else {
-            if (carouselOffset <= 0) {
-                // Snap to end of clones instantly, then animate back
-                const track = document.querySelector(".carousel-track");
-                if (track) {
-                    track.style.transition = "none";
-                    carouselOffset = totalOriginal;
-                    await tick(); // Wait for DOM update
-                    void track.offsetWidth;
-                    track.style.transition = "transform 0.4s ease";
-                    // Need small delay to ensure transition is active before decrement
-                    await new Promise((r) => requestAnimationFrame(r));
-                }
-            }
-            carouselOffset--;
-            isTransitioning = true;
-            setTimeout(() => (isTransitioning = false), 400);
-        }
-    }
 </script>
 
 <div class="home">
@@ -209,83 +145,47 @@
         {/if}
     </section>
 
-    <!-- Coming Soon Section with Carousel -->
-    <section class="coming-soon">
+    <!-- More Recipes Section (was carousel) -->
+    <section class="more-recipes">
         <div class="film-strip-top gold"></div>
-        <div class="coming-soon-content">
+        <div class="more-recipes-content">
             <div class="section-header dark">
-                <h2>Coming Soon: Film Festival Favorites</h2>
+                <h2>More Culinary Adventures</h2>
             </div>
 
-            <div class="carousel-container">
-                <button
-                    class="carousel-arrow left"
-                    on:click={() => scrollCarousel("left")}
-                    aria-label="Previous"
-                >
-                    ‹
-                </button>
-
-                <div class="carousel-viewport">
-                    <div
-                        class="carousel-track"
-                        style="transform: translateX(-{carouselOffset * 170}px)"
-                    >
-                        {#if extendedRecipes.length > 0}
-                            {#each extendedRecipes as recipe, i (i)}
-                                <a
-                                    href="/recipes/{recipe.id}"
-                                    use:link
-                                    class="coming-soon-card"
-                                >
-                                    <div class="card-thumbnail">
-                                        {#if recipe.image_url}
-                                            <img
-                                                src={recipe.image_url}
-                                                alt={recipe.title}
-                                            />
-                                        {:else}
-                                            <div class="placeholder-small">
-                                                🎬
-                                            </div>
-                                        {/if}
-                                    </div>
-                                    <div class="card-info">
-                                        <h4>
-                                            {recipe.media?.title ||
-                                                recipe.title}
-                                        </h4>
-                                        <p class="recipe-name">
-                                            {recipe.title}
-                                        </p>
-                                        <span class="preview-btn">Preview</span>
-                                    </div>
-                                </a>
-                            {/each}
-                        {:else}
-                            {#each [1, 2, 3, 4] as i}
-                                <div class="coming-soon-card placeholder-card">
-                                    <div class="card-thumbnail">
-                                        <div class="placeholder-small">🎬</div>
-                                    </div>
-                                    <div class="card-info">
-                                        <h4>Coming Soon</h4>
-                                        <span class="preview-btn">Preview</span>
-                                    </div>
-                                </div>
-                            {/each}
-                        {/if}
-                    </div>
+            {#if moreRecipes.length > 0}
+                <div class="recipes-grid">
+                    {#each moreRecipes as recipe}
+                        <a
+                            href="/recipes/{recipe.id}"
+                            use:link
+                            class="more-recipe-card"
+                        >
+                            <div class="card-thumbnail">
+                                {#if recipe.image_url}
+                                    <img
+                                        src={recipe.image_url}
+                                        alt={recipe.title}
+                                    />
+                                {:else}
+                                    <div class="placeholder-small">🎬</div>
+                                {/if}
+                            </div>
+                            <div class="card-info">
+                                <h4>
+                                    {recipe.media?.title || recipe.title}
+                                </h4>
+                                <p class="recipe-name">
+                                    {recipe.title}
+                                </p>
+                                <span class="preview-btn">View Recipe</span>
+                            </div>
+                        </a>
+                    {/each}
                 </div>
-
-                <button
-                    class="carousel-arrow right"
-                    on:click={() => scrollCarousel("right")}
-                    aria-label="Next"
-                >
-                    ›
-                </button>
-            </div>
+            {:else}
+                <p class="empty">Plus de recettes bientôt!</p>
+            {/if}
         </div>
         <div class="film-strip-bottom gold"></div>
     </section>
@@ -640,58 +540,26 @@
         font-size: 2rem;
     }
 
-    /* ========== COMING SOON SECTION ========== */
-    .coming-soon {
+    /* ========== MORE RECIPES SECTION (simplified from carousel) ========== */
+    .more-recipes {
         position: relative;
         z-index: 1;
         background: var(--or-cinema);
     }
 
-    .coming-soon-content {
-        padding: 1.2rem 5%;
+    .more-recipes-content {
+        padding: 1.5rem 5%;
     }
 
-    .carousel-container {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        max-width: 1000px;
+    .recipes-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        max-width: 1200px;
         margin: 0 auto;
     }
 
-    .carousel-arrow {
-        background: rgba(0, 0, 0, 0.2);
-        border: 2px solid var(--noir-pur);
-        color: var(--noir-pur);
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        font-size: 1.4rem;
-        cursor: pointer;
-        transition: all 0.3s;
-        flex-shrink: 0;
-        z-index: 2;
-    }
-
-    .carousel-arrow:hover {
-        background: var(--noir-pur);
-        color: var(--or-cinema);
-    }
-
-    .carousel-viewport {
-        flex: 1;
-        overflow: hidden;
-    }
-
-    .carousel-track {
-        display: flex;
-        gap: 10px;
-        transition: transform 0.4s ease;
-    }
-
-    .coming-soon-card {
-        flex-shrink: 0;
-        width: 160px;
+    .more-recipe-card {
         background: rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         overflow: hidden;
@@ -700,13 +568,14 @@
         border: 2px solid transparent;
     }
 
-    .coming-soon-card:hover {
+    .more-recipe-card:hover {
         background: rgba(0, 0, 0, 0.18);
         border-color: var(--noir-pur);
+        transform: translateY(-3px);
     }
 
     .card-thumbnail {
-        height: 80px;
+        height: 100px;
         overflow: hidden;
     }
 
@@ -717,24 +586,24 @@
     }
 
     .card-info {
-        padding: 0.5rem;
+        padding: 0.6rem;
     }
 
     .card-info h4 {
         font-family: var(--font-title);
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         color: var(--noir-pur);
-        margin-bottom: 0.1rem;
-    }
-
-    .recipe-name {
-        font-size: 0.6rem;
-        color: var(--rouge-rideau);
         margin-bottom: 0.15rem;
     }
 
+    .recipe-name {
+        font-size: 0.65rem;
+        color: var(--rouge-rideau);
+        margin-bottom: 0.2rem;
+    }
+
     .preview-btn {
-        font-size: 0.55rem;
+        font-size: 0.6rem;
         color: var(--noir-pur);
         text-decoration: underline;
         text-transform: uppercase;
@@ -748,10 +617,6 @@
         justify-content: center;
         background: rgba(0, 0, 0, 0.12);
         font-size: 1.5rem;
-    }
-
-    .placeholder-card {
-        opacity: 0.6;
     }
 
     /* Loading/Error States */

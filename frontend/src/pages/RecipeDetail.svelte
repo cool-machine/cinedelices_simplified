@@ -7,12 +7,8 @@
     export let params = {};
 
     let recipe = null;
-    let reviews = [];
     let loading = true;
     let error = null;
-    let userRating = 0;
-    let newReview = "";
-    let isFavorited = false;
 
     const FALLBACK_IMAGE =
         "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%232a2a2a%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23d4af37%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%3EImage%20N%2FA%3C%2Ftext%3E%3C%2Fsvg%3E";
@@ -23,48 +19,13 @@
 
     onMount(async () => {
         try {
-            [recipe, reviews] = await Promise.all([
-                api.getRecipe(params.id),
-                api.getReviews(params.id),
-            ]);
+            recipe = await api.getRecipe(params.id);
         } catch (e) {
             error = e.message;
         } finally {
             loading = false;
         }
     });
-
-    async function handleRate(score) {
-        if (!$auth.user) return push("/login");
-        try {
-            await api.rateRecipe(params.id, score);
-            userRating = score;
-        } catch (e) {
-            alert(e.message);
-        }
-    }
-
-    async function handleFavorite() {
-        if (!$auth.user) return push("/login");
-        try {
-            const result = await api.toggleFavorite(params.id);
-            isFavorited = result.favorited;
-        } catch (e) {
-            alert(e.message);
-        }
-    }
-
-    async function handleReview() {
-        if (!$auth.user) return push("/login");
-        if (!newReview.trim()) return;
-        try {
-            const review = await api.createReview(params.id, newReview);
-            reviews = [review, ...reviews];
-            newReview = "";
-        } catch (e) {
-            alert(e.message);
-        }
-    }
 
     async function handleDelete() {
         if (!confirm("Supprimer cette recette ?")) return;
@@ -246,24 +207,6 @@
 
                 <!-- Actions -->
                 <div class="sidebar-actions">
-                    <button
-                        class="favorite-btn"
-                        class:active={isFavorited}
-                        on:click={handleFavorite}
-                    >
-                        {isFavorited ? "❤️" : "🤍"} Favoris
-                    </button>
-
-                    <div class="rating">
-                        {#each [1, 2, 3, 4, 5] as star}
-                            <button
-                                class="star"
-                                class:active={star <= userRating}
-                                on:click={() => handleRate(star)}>★</button
-                            >
-                        {/each}
-                    </div>
-
                     {#if canEdit}
                         <a
                             href="/recipes/{recipe.id}/edit"
@@ -295,74 +238,6 @@
                                 "Suivez les étapes de la recette..."}
                         </p>
                     </div>
-                {/each}
-            </div>
-        </section>
-
-        <!-- User Comments Section -->
-        <section class="comments-section">
-            <h2>User Comments</h2>
-
-            <div class="comment-avatars">
-                {#each reviews.slice(0, 6) as review, i}
-                    <div
-                        class="comment-avatar"
-                        title={review.author?.username || "User"}
-                    >
-                        <span class="avatar-initial"
-                            >{(review.author?.username ||
-                                "U")[0].toUpperCase()}</span
-                        >
-                        <div class="avatar-rating">
-                            {"★".repeat(Math.min(5, i + 3))}
-                        </div>
-                    </div>
-                {:else}
-                    {#each [1, 2, 3, 4, 5, 6] as _}
-                        <div class="comment-avatar placeholder">
-                            <span class="avatar-initial">?</span>
-                            <div class="avatar-rating">★★★★</div>
-                        </div>
-                    {/each}
-                {/each}
-            </div>
-
-            {#if $auth.user}
-                <form
-                    on:submit|preventDefault={handleReview}
-                    class="review-form"
-                >
-                    <textarea
-                        bind:value={newReview}
-                        placeholder="Partagez votre avis..."
-                        rows="3"
-                    ></textarea>
-                    <button type="submit" class="btn-submit">Publier</button>
-                </form>
-            {:else}
-                <p class="login-prompt">
-                    <a href="/login" use:link>Connectez-vous</a> pour laisser un
-                    avis
-                </p>
-            {/if}
-
-            <div class="reviews-list">
-                {#each reviews as review}
-                    <div class="review">
-                        <div class="review-header">
-                            <strong
-                                >{review.author?.username || "Anonyme"}</strong
-                            >
-                            <span class="date"
-                                >{new Date(
-                                    review.created_at,
-                                ).toLocaleDateString()}</span
-                            >
-                        </div>
-                        <p>{review.content}</p>
-                    </div>
-                {:else}
-                    <p class="no-reviews">Aucun avis pour le moment</p>
                 {/each}
             </div>
         </section>
