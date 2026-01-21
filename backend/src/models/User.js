@@ -12,13 +12,6 @@ export default (sequelize, DataTypes) => {
                 as: 'recipes',
                 onDelete: 'CASCADE'
             });
-
-            // User has many favorites
-            User.hasMany(models.Favorite, {
-                foreignKey: 'user_id',
-                as: 'favorites',
-                onDelete: 'CASCADE'
-            });
         }
 
         /**

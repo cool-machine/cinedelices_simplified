@@ -26,27 +26,6 @@ export default (sequelize, DataTypes) => {
                 as: 'media',
                 onDelete: 'SET NULL'
             });
-
-            // Recipe has many Ratings
-            Recipe.hasMany(models.Rating, {
-                foreignKey: 'recipe_id',
-                as: 'ratings',
-                onDelete: 'CASCADE'
-            });
-
-            // Recipe has many Reviews
-            Recipe.hasMany(models.Review, {
-                foreignKey: 'recipe_id',
-                as: 'reviews',
-                onDelete: 'CASCADE'
-            });
-
-            // Recipe has many Favorites
-            Recipe.hasMany(models.Favorite, {
-                foreignKey: 'recipe_id',
-                as: 'favorites',
-                onDelete: 'CASCADE'
-            });
         }
 
         /**

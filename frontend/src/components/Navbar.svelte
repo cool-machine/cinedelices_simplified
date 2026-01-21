@@ -16,9 +16,8 @@
             <li><a href="/" use:link>Accueil</a></li>
             <li><a href="/recipes" use:link>Recettes</a></li>
             {#if $auth.user}
-                <li><a href="/favorites" use:link>Favoris</a></li>
                 <li>
-                    <a href="/movie-search" use:link class="create-link"
+                    <a href="/recipes/new" use:link class="create-link"
                         >+ Créer</a
                     >
                 </li>
