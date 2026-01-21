@@ -1,6 +1,6 @@
 import db from '../models/index.js';
 
-const { Recipe, User, Category, Media, Rating, Review, Favorite } = db;
+const { Recipe, User, Category, Media } = db;
 
 export const createRecipe = async (req, res) => {
     try {
@@ -77,10 +77,7 @@ export const deleteRecipe = async (req, res) => {
             return res.status(403).json({ message: 'Not authorized to delete this recipe' });
         }
 
-        // Delete related records first to avoid foreign key constraints
-        await Rating.destroy({ where: { recipe_id: req.params.id } });
-        await Review.destroy({ where: { recipe_id: req.params.id } });
-        await Favorite.destroy({ where: { recipe_id: req.params.id } });
+        // Delete related records (favorites, ratings, etc. are handled by DB cascade if they existed, but models are gone)
 
         await recipe.destroy();
         res.status(204).send();

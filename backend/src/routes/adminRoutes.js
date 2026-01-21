@@ -4,7 +4,7 @@ import { validate } from '../middlewares/validator.js';
 import { body } from 'express-validator';
 import db from '../models/index.js';
 
-const { Recipe, Category, Media, User, Rating, Review, Favorite } = db;
+const { Recipe, Category, Media, User } = db;
 
 const router = Router();
 
@@ -47,10 +47,7 @@ router.delete('/recipes/:id', async (req, res) => {
             return res.status(404).json({ message: 'Recipe not found' });
         }
 
-        // Delete related records first to avoid foreign key constraints
-        await Rating.destroy({ where: { recipe_id: req.params.id } });
-        await Review.destroy({ where: { recipe_id: req.params.id } });
-        await Favorite.destroy({ where: { recipe_id: req.params.id } });
+
 
         await recipe.destroy();
         res.status(204).send();
