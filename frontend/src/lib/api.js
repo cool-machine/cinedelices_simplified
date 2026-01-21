@@ -35,19 +35,10 @@ export const api = {
     updateRecipe: (id, data) => request(`/recipes/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteRecipe: (id) => request(`/recipes/${id}`, { method: 'DELETE' }),
 
-    // Recipe interactions
-    toggleFavorite: (id) => request(`/recipes/${id}/favorite`, { method: 'POST' }),
-    rateRecipe: (id, score) => request(`/recipes/${id}/rate`, { method: 'POST', body: JSON.stringify({ score }) }),
-    getReviews: (id) => request(`/recipes/${id}/reviews`),
-    createReview: (id, content) => request(`/recipes/${id}/reviews`, { method: 'POST', body: JSON.stringify({ content }) }),
-
     // Users
     getUser: (id) => request(`/users/${id}`),
     updateUser: (id, data) => request(`/users/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteUser: (id) => request(`/users/${id}`, { method: 'DELETE' }),
-
-    // Favorites
-    getFavorites: () => request('/favorites'),
 
     // Metadata
     getCategories: () => request('/categories'),
