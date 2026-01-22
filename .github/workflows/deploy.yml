@@ -1,0 +1,71 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main
+      - simplified-mvp
+  workflow_dispatch:  # Allow manual trigger
+
+env:
+  AZURE_RESOURCE_GROUP: oclock-resources
+  ACR_NAME: oclockcontainerregistry
+  ACR_LOGIN_SERVER: oclockcontainerregistry.azurecr.io
+  BACKEND_APP_NAME: cinedelices-backend
+  FRONTEND_APP_NAME: cinedelices-frontend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ env.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build and push Backend image
+        run: |
+          docker build -t ${{ env.ACR_LOGIN_SERVER }}/backend:${{ github.sha }} \
+                       -t ${{ env.ACR_LOGIN_SERVER }}/backend:latest \
+                       ./backend
+          docker push ${{ env.ACR_LOGIN_SERVER }}/backend:${{ github.sha }}
+          docker push ${{ env.ACR_LOGIN_SERVER }}/backend:latest
+
+      - name: Build and push Frontend image
+        run: |
+          docker build -t ${{ env.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }} \
+                       -t ${{ env.ACR_LOGIN_SERVER }}/frontend:latest \
+                       ./frontend
+          docker push ${{ env.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }}
+          docker push ${{ env.ACR_LOGIN_SERVER }}/frontend:latest
+
+      - name: Deploy Backend to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          resourceGroup: ${{ env.AZURE_RESOURCE_GROUP }}
+          containerAppName: ${{ env.BACKEND_APP_NAME }}
+          imageToDeploy: ${{ env.ACR_LOGIN_SERVER }}/backend:${{ github.sha }}
+
+      - name: Deploy Frontend to Azure Container Apps
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          resourceGroup: ${{ env.AZURE_RESOURCE_GROUP }}
+          containerAppName: ${{ env.FRONTEND_APP_NAME }}
+          imageToDeploy: ${{ env.ACR_LOGIN_SERVER }}/frontend:${{ github.sha }}
+
+      - name: Deployment Summary
+        run: |
+          echo "✅ Deployment complete!"
+          echo "Frontend: https://cinedelices-frontend.calmglacier-7bdfaf80.canadacentral.azurecontainerapps.io"
+          echo "Backend: https://cinedelices-backend.calmglacier-7bdfaf80.canadacentral.azurecontainerapps.io"
