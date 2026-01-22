@@ -1,4 +1,5 @@
 import Home from './pages/Home.svelte';
+import Movies from './pages/Movies.svelte';
 import Recipes from './pages/Recipes.svelte';
 import RecipeDetail from './pages/RecipeDetail.svelte';
 import RecipeNew from './pages/RecipeNew.svelte';
@@ -19,6 +20,7 @@ import Privacy from './pages/Privacy.svelte';
 
 export const routes = {
     '/': Home,
+    '/movies': Movies,
     '/recipes': Recipes,
     '/recipes/new': RecipeNew,
     '/recipes/:id': RecipeDetail,

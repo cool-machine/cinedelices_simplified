@@ -45,6 +45,10 @@ export const api = {
     getMedia: () => request('/media'),
     createMedia: (data) => request('/media', { method: 'POST', body: JSON.stringify(data) }),
 
+    // TMDB
+    searchMovies: (query, type = 'movie') => request(`/tmdb/search?query=${encodeURIComponent(query)}&type=${type}`),
+    getMovieDetails: (id, type = 'movie') => request(`/tmdb/${id}?type=${type}`),
+
     // Admin
     admin: {
         getStats: () => request('/admin/stats'),

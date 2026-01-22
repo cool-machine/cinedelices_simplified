@@ -14,6 +14,7 @@
         </div>
         <ul>
             <li><a href="/" use:link>Accueil</a></li>
+            <li><a href="/movies" use:link>Films</a></li>
             <li><a href="/recipes" use:link>Recettes</a></li>
             {#if $auth.user}
                 <li>

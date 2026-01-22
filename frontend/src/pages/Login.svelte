@@ -1,17 +1,45 @@
 <script>
-    import { link, push } from 'svelte-spa-router';
+    import { onMount } from 'svelte';
+    import { link, push, querystring } from 'svelte-spa-router';
     import { auth } from '../lib/stores/auth.js';
 
     let email = '';
     let password = '';
     let loading = false;
+    
+    // Movie redirect info (from Movies page)
+    let redirectInfo = null;
+
+    onMount(() => {
+        const params = new URLSearchParams($querystring);
+        if (params.get('redirect') === 'recipe') {
+            redirectInfo = {
+                movie_title: params.get('movie_title'),
+                movie_poster: params.get('movie_poster'),
+                movie_year: params.get('movie_year'),
+                movie_type: params.get('movie_type'),
+            };
+        }
+    });
 
     async function handleSubmit() {
         loading = true;
         const result = await auth.login(email, password);
         loading = false;
         if (result.success) {
-            push('/');
+            if (redirectInfo) {
+                // Redirect to recipe creation with movie info
+                const recipeParams = new URLSearchParams({
+                    prefill_movie: 'true',
+                    movie_title: redirectInfo.movie_title || '',
+                    movie_poster: redirectInfo.movie_poster || '',
+                    movie_year: redirectInfo.movie_year || '',
+                    movie_type: redirectInfo.movie_type || 'film',
+                });
+                push(`/recipes/new?${recipeParams.toString()}`);
+            } else {
+                push('/');
+            }
         }
     }
 </script>
@@ -53,7 +81,7 @@
         </form>
 
         <p class="switch">
-            Pas encore de compte ? <a href="/register" use:link>S'inscrire</a>
+            Pas encore de compte ? <a href="/register{$querystring ? '?' + $querystring : ''}" use:link>S'inscrire</a>
         </p>
     </div>
 </div>
