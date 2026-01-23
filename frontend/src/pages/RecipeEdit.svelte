@@ -78,10 +78,10 @@
 </script>
 
 <div class="recipe-form-page">
-    <h1>Modifier la recette</h1>
+    <h1>Edit Recipe</h1>
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else}
         {#if error}
             <div class="error">{error}</div>
@@ -89,7 +89,7 @@
 
         <form on:submit|preventDefault={handleSubmit}>
             <div class="form-group">
-                <label for="title">Titre *</label>
+                <label for="title">Title *</label>
                 <input 
                     type="text" 
                     id="title" 
@@ -101,9 +101,9 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label for="category">Catégorie</label>
+                    <label for="category">Category</label>
                     <select id="category" bind:value={form.category_id} disabled={saving}>
-                        <option value="">Sélectionner...</option>
+                        <option value="">Select...</option>
                         {#each categories as cat}
                             <option value={cat.id}>{cat.name}</option>
                         {/each}
@@ -111,9 +111,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="media">Film/Série</label>
+                    <label for="media">Movie/Series</label>
                     <select id="media" bind:value={form.media_id} disabled={saving}>
-                        <option value="">Sélectionner...</option>
+                        <option value="">Select...</option>
                         {#each media as m}
                             <option value={m.id}>{m.title}</option>
                         {/each}
@@ -122,7 +122,7 @@
             </div>
 
             <div class="form-group">
-                <label for="image_url">URL de l'image</label>
+                <label for="image_url">Image URL</label>
                 <input 
                     type="url" 
                     id="image_url" 
@@ -143,7 +143,7 @@
             </div>
 
             <div class="form-group">
-                <label for="ingredients">Ingrédients *</label>
+                <label for="ingredients">Ingredients *</label>
                 <textarea 
                     id="ingredients" 
                     bind:value={form.ingredients} 
@@ -166,10 +166,10 @@
 
             <div class="form-actions">
                 <button type="button" class="cancel" on:click={() => push(`/recipes/${params.id}`)}>
-                    Annuler
+                    Cancel
                 </button>
                 <button type="submit" disabled={saving}>
-                    {saving ? 'Enregistrement...' : 'Enregistrer'}
+                    {saving ? 'Saving...' : 'Save'}
                 </button>
             </div>
         </form>

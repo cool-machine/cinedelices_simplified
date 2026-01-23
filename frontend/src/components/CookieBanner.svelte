@@ -27,20 +27,20 @@
     <div class="cookie-banner" transition:fly={{ y: 100, duration: 500 }}>
         <div class="cookie-content">
             <p>
-                🍪 <strong>Respect de votre vie privée</strong> <br />
-                Nous utilisons uniquement des
-                <strong>cookies fonctionnels</strong>
-                nécessaires au bon fonctionnement du site (authentification, session).
-                Aucun cookie publicitaire ni de suivi n'est utilisé. Aucune donnée
-                n'est revendue à des tiers.
-                <a href="/#/privacy" class="link">En savoir plus</a>.
+                🍪 <strong>Privacy Notice</strong> <br />
+                We only use
+                <strong>functional cookies</strong>
+                necessary for the site to work properly (authentication, session).
+                No advertising or tracking cookies are used. No data
+                is sold to third parties.
+                <a href="/#/privacy" class="link">Learn more</a>.
             </p>
             <div class="button-group">
                 <button class="refuse-btn" on:click={refuseCookies}>
-                    Refuser
+                    Decline
                 </button>
                 <button class="accept-btn" on:click={acceptCookies}>
-                    Accepter
+                    Accept
                 </button>
             </div>
         </div>

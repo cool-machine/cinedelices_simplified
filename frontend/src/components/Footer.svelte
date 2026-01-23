@@ -6,7 +6,7 @@
 
     function handleNewsletter(e) {
         e.preventDefault();
-        alert("Merci pour votre inscription à la newsletter!");
+        alert("Thank you for subscribing to our newsletter!");
         email = "";
     }
 </script>

@@ -54,17 +54,17 @@
     async function handleDeleteAccount() {
         if (
             !confirm(
-                "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.",
+                "Are you sure you want to delete your account? This action is irreversible.",
             )
         ) {
             return;
         }
 
         const confirmName = prompt(
-            `Pour confirmer, tapez "${$auth.user.username}" :`,
+            `To confirm, type "${$auth.user.username}":`,
         );
         if (confirmName !== $auth.user.username) {
-            alert("Nom d'utilisateur incorrect. Suppression annulée.");
+            alert("Incorrect username. Deletion cancelled.");
             return;
         }
 
@@ -81,10 +81,10 @@
 </script>
 
 <div class="profile-edit-page">
-    <h1>Modifier le profil</h1>
+    <h1>Edit Profile</h1>
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else}
         {#if error}
             <div class="error">{error}</div>
@@ -92,7 +92,7 @@
 
         <form on:submit|preventDefault={handleSubmit}>
             <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
+                <label for="username">Username</label>
                 <input
                     type="text"
                     id="username"
@@ -115,7 +115,7 @@
             </div>
 
             <div class="form-group">
-                <label for="avatar_url">URL de l'avatar</label>
+                <label for="avatar_url">Avatar URL</label>
                 <input
                     type="url"
                     id="avatar_url"
@@ -125,7 +125,7 @@
                 />
                 {#if form.avatar_url}
                     <div class="avatar-preview">
-                        <img src={form.avatar_url} alt="Aperçu" />
+                        <img src={form.avatar_url} alt="Preview" />
                     </div>
                 {/if}
             </div>
@@ -136,7 +136,7 @@
                     id="bio"
                     bind:value={form.bio}
                     rows="4"
-                    placeholder="Parlez-nous de vous..."
+                    placeholder="Tell us about yourself..."
                     disabled={saving}
                 ></textarea>
             </div>
@@ -147,27 +147,26 @@
                     class="cancel"
                     on:click={() => push(`/profile/${$auth.user.id}`)}
                 >
-                    Annuler
+                    Cancel
                 </button>
                 <button type="submit" disabled={saving}>
-                    {saving ? "Enregistrement..." : "Enregistrer"}
+                    {saving ? "Saving..." : "Save"}
                 </button>
             </div>
         </form>
 
         <div class="delete-account-section">
-            <h3>Zone Danger</h3>
+            <h3>Danger Zone</h3>
             <p>
-                La suppression de votre compte est irréversible. Toutes vos
-                données (recettes, favoris, commentaires) seront définitivement
-                effacées.
+                Deleting your account is irreversible. All your data 
+                (recipes, favorites, comments) will be permanently erased.
             </p>
             <button
                 type="button"
                 class="delete-btn"
                 on:click={handleDeleteAccount}
             >
-                Supprimer mon compte
+                Delete My Account
             </button>
         </div>
     {/if}

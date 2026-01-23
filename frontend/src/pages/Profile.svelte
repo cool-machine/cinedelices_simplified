@@ -25,7 +25,7 @@
 
 <div class="profile-page">
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else if user}
@@ -49,17 +49,17 @@
                     <p class="bio">{user.bio}</p>
                 {/if}
                 <p class="member-since">
-                    Membre depuis {new Date(user.created_at).toLocaleDateString()}
+                    Member since {new Date(user.created_at).toLocaleDateString()}
                 </p>
                 
                 {#if isOwnProfile}
-                    <a href="/profile/edit" use:link class="edit-btn">✏️ Modifier le profil</a>
+                    <a href="/profile/edit" use:link class="edit-btn">✏️ Edit Profile</a>
                 {/if}
             </div>
         </div>
 
         <section class="user-recipes">
-            <h2>Recettes de {user.username}</h2>
+            <h2>Recipes by {user.username}</h2>
             
             {#if user.recipes && user.recipes.length > 0}
                 <div class="recipe-grid">
@@ -79,7 +79,7 @@
                     {/each}
                 </div>
             {:else}
-                <p class="no-recipes">Aucune recette publiée</p>
+                <p class="no-recipes">No recipes published</p>
             {/if}
         </section>
     {/if}

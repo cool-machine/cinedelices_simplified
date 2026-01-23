@@ -27,7 +27,7 @@
     }
 
     async function deleteRecipe(id) {
-        if (!confirm('Supprimer cette recette ?')) return;
+        if (!confirm('Delete this recipe?')) return;
         try {
             await api.admin.deleteRecipe(id);
             recipes = recipes.filter(r => r.id !== id);
@@ -39,12 +39,12 @@
 
 <div class="admin-page">
     <div class="page-header">
-        <h1>🍽️ Gestion des recettes</h1>
-        <a href="/admin" use:link class="back-btn">← Retour</a>
+        <h1>🍽️ Recipe Management</h1>
+        <a href="/admin" use:link class="back-btn">← Back</a>
     </div>
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else}
@@ -53,10 +53,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>Catégorie</th>
-                        <th>Média</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Media</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -77,7 +77,7 @@
                         </tr>
                     {:else}
                         <tr>
-                            <td colspan="6" class="empty">Aucune recette</td>
+                            <td colspan="6" class="empty">No recipes</td>
                         </tr>
                     {/each}
                 </tbody>

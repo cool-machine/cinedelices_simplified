@@ -64,7 +64,7 @@
     }
 
     async function deleteCategory(id) {
-        if (!confirm('Supprimer cette catégorie ?')) return;
+        if (!confirm('Delete this category?')) return;
         try {
             await api.admin.deleteCategory(id);
             categories = categories.filter(c => c.id !== id);
@@ -76,33 +76,33 @@
 
 <div class="admin-page">
     <div class="page-header">
-        <h1>📂 Gestion des catégories</h1>
+        <h1>📂 Category Management</h1>
         <div class="header-actions">
-            <button class="add-btn" on:click={startCreate}>+ Nouvelle catégorie</button>
-            <a href="/admin" use:link class="back-btn">← Retour</a>
+            <button class="add-btn" on:click={startCreate}>+ New Category</button>
+            <a href="/admin" use:link class="back-btn">← Back</a>
         </div>
     </div>
 
     {#if showForm}
         <div class="form-card">
-            <h3>{editingId ? 'Modifier' : 'Nouvelle'} catégorie</h3>
+            <h3>{editingId ? 'Edit' : 'New'} Category</h3>
             <form on:submit|preventDefault={handleSubmit}>
                 <input 
                     type="text" 
                     bind:value={formName} 
-                    placeholder="Nom de la catégorie"
+                    placeholder="Category name"
                     required
                 />
                 <div class="form-actions">
-                    <button type="button" class="cancel" on:click={cancelForm}>Annuler</button>
-                    <button type="submit">{editingId ? 'Modifier' : 'Créer'}</button>
+                    <button type="button" class="cancel" on:click={cancelForm}>Cancel</button>
+                    <button type="submit">{editingId ? 'Save' : 'Create'}</button>
                 </div>
             </form>
         </div>
     {/if}
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else}
@@ -111,7 +111,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nom</th>
+                        <th>Name</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -127,7 +127,7 @@
                         </tr>
                     {:else}
                         <tr>
-                            <td colspan="3" class="empty">Aucune catégorie</td>
+                            <td colspan="3" class="empty">No categories</td>
                         </tr>
                     {/each}
                 </tbody>

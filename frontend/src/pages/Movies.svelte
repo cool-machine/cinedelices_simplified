@@ -81,9 +81,9 @@
 
 <div class="movies-page">
     <div class="page-header">
-        <h1>🎬 Découvrir des Films & Séries</h1>
+        <h1>🎬 Discover Movies & TV Shows</h1>
         <p class="subtitle">
-            Recherchez un film ou une série pour créer une recette inspirée
+            Search for a movie or TV show to create an inspired recipe
         </p>
     </div>
 
@@ -94,7 +94,7 @@
                     type="text"
                     bind:value={searchQuery}
                     oninput={handleInput}
-                    placeholder="Commencez à taper pour rechercher..."
+                    placeholder="Start typing to search..."
                     autofocus
                 />
                 {#if loading}
@@ -110,7 +110,7 @@
                         value="movie"
                         onchange={handleTypeChange}
                     />
-                    Films
+                    Movies
                 </label>
                 <label>
                     <input
@@ -119,7 +119,7 @@
                         value="tv"
                         onchange={handleTypeChange}
                     />
-                    Séries
+                    TV Shows
                 </label>
             </div>
         </div>
@@ -146,7 +146,7 @@
                             <span class="year">{movie.year}</span>
                         {/if}
                         <span class="type-badge">
-                            {movie.type === "serie" ? "Série" : "Film"}
+                            {movie.type === "serie" ? "TV Show" : "Movie"}
                         </span>
                         {#if movie.overview}
                             <p class="overview">{movie.overview.slice(0, 100)}...</p>
@@ -155,7 +155,7 @@
                             class="create-recipe-btn"
                             onclick={() => createRecipeForMovie(movie)}
                         >
-                            Créer une recette
+                            Create a Recipe
                         </button>
                     </div>
                 </div>
@@ -164,16 +164,16 @@
     {:else}
         <div class="welcome-message">
             <div class="welcome-icon">🍿</div>
-            <h2>Bienvenue dans la recherche de films</h2>
+            <h2>Welcome to Movie Search</h2>
             <p>
-                Utilisez la barre de recherche ci-dessus pour trouver un film ou
-                une série, puis créez une recette inspirée de votre choix.
+                Use the search bar above to find a movie or TV show, 
+                then create a recipe inspired by your choice.
             </p>
             {#if !$auth.user}
                 <p class="auth-hint">
-                    <a href="/login" use:link>Connectez-vous</a> ou
-                    <a href="/register" use:link>inscrivez-vous</a> pour créer
-                    vos propres recettes.
+                    <a href="/login" use:link>Log in</a> or
+                    <a href="/register" use:link>register</a> to create
+                    your own recipes.
                 </p>
             {/if}
         </div>

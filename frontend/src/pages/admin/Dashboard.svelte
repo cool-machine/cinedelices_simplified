@@ -28,7 +28,7 @@
     <h1>🛠️ Administration</h1>
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else}
@@ -36,47 +36,47 @@
             <div class="stat-card">
                 <span class="stat-icon">🍽️</span>
                 <span class="stat-value">{stats.recipes}</span>
-                <span class="stat-label">Recettes</span>
+                <span class="stat-label">Recipes</span>
             </div>
             <div class="stat-card">
                 <span class="stat-icon">👥</span>
                 <span class="stat-value">{stats.users}</span>
-                <span class="stat-label">Utilisateurs</span>
+                <span class="stat-label">Users</span>
             </div>
             <div class="stat-card">
                 <span class="stat-icon">📂</span>
                 <span class="stat-value">{stats.categories}</span>
-                <span class="stat-label">Catégories</span>
+                <span class="stat-label">Categories</span>
             </div>
             <div class="stat-card">
                 <span class="stat-icon">🎬</span>
                 <span class="stat-value">{stats.media}</span>
-                <span class="stat-label">Médias</span>
+                <span class="stat-label">Media</span>
             </div>
         </div>
 
         <div class="admin-menu">
-            <h2>Gestion</h2>
+            <h2>Management</h2>
             <div class="menu-grid">
                 <a href="/admin/recipes" use:link class="menu-card">
                     <span class="menu-icon">🍽️</span>
-                    <span class="menu-title">Recettes</span>
-                    <span class="menu-desc">Gérer les recettes</span>
+                    <span class="menu-title">Recipes</span>
+                    <span class="menu-desc">Manage recipes</span>
                 </a>
                 <a href="/admin/categories" use:link class="menu-card">
                     <span class="menu-icon">📂</span>
-                    <span class="menu-title">Catégories</span>
-                    <span class="menu-desc">Gérer les catégories</span>
+                    <span class="menu-title">Categories</span>
+                    <span class="menu-desc">Manage categories</span>
                 </a>
                 <a href="/admin/media" use:link class="menu-card">
                     <span class="menu-icon">🎬</span>
-                    <span class="menu-title">Médias</span>
-                    <span class="menu-desc">Films et séries</span>
+                    <span class="menu-title">Media</span>
+                    <span class="menu-desc">Movies and series</span>
                 </a>
                 <a href="/admin/users" use:link class="menu-card">
                     <span class="menu-icon">👥</span>
-                    <span class="menu-title">Utilisateurs</span>
-                    <span class="menu-desc">Gérer les comptes</span>
+                    <span class="menu-title">Users</span>
+                    <span class="menu-desc">Manage accounts</span>
                 </a>
             </div>
         </div>

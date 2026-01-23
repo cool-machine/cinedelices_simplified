@@ -108,7 +108,7 @@
 </script>
 
 <div class="recipe-form-page">
-    <h1>Nouvelle recette</h1>
+    <h1>New Recipe</h1>
 
     {#if error}
         <div class="error">{error}</div>
@@ -116,7 +116,7 @@
 
     <form on:submit|preventDefault={handleSubmit}>
         <div class="form-group">
-            <label for="title">Titre *</label>
+            <label for="title">Title *</label>
             <input
                 type="text"
                 id="title"
@@ -128,13 +128,13 @@
 
         <div class="form-row">
             <div class="form-group">
-                <label for="category">Catégorie</label>
+                <label for="category">Category</label>
                 <select
                     id="category"
                     bind:value={form.category_id}
                     disabled={loading}
                 >
-                    <option value="">Sélectionner...</option>
+                    <option value="">Select...</option>
                     {#each categories as cat}
                         <option value={cat.id}>{cat.name}</option>
                     {/each}
@@ -142,13 +142,13 @@
             </div>
 
             <div class="form-group">
-                <label for="media">Film/Série</label>
+                <label for="media">Movie/Series</label>
                 <select
                     id="media"
                     bind:value={form.media_id}
                     disabled={loading}
                 >
-                    <option value="">Sélectionner...</option>
+                    <option value="">Select...</option>
                     {#each media as m}
                         <option value={m.id}>{m.title}</option>
                     {/each}
@@ -157,7 +157,7 @@
         </div>
 
         <div class="form-group">
-            <label for="image_url">URL de l'image</label>
+            <label for="image_url">Image URL</label>
             <input
                 type="url"
                 id="image_url"
@@ -178,13 +178,13 @@
         </div>
 
         <div class="form-group">
-            <label for="ingredients">Ingrédients *</label>
+            <label for="ingredients">Ingredients *</label>
             <textarea
                 id="ingredients"
                 bind:value={form.ingredients}
                 rows="6"
                 required
-                placeholder="- 200g de farine&#10;- 3 oeufs&#10;..."
+                placeholder="- 200g flour&#10;- 3 eggs&#10;..."
                 disabled={loading}
             ></textarea>
         </div>
@@ -196,7 +196,7 @@
                 bind:value={form.instructions}
                 rows="8"
                 required
-                placeholder="1. Préchauffer le four...&#10;2. Mélanger..."
+                placeholder="1. Preheat the oven...&#10;2. Mix..."
                 disabled={loading}
             ></textarea>
         </div>
@@ -207,10 +207,10 @@
                 class="cancel"
                 on:click={() => push("/recipes")}
             >
-                Annuler
+                Cancel
             </button>
             <button type="submit" disabled={loading}>
-                {loading ? "Création..." : "Créer la recette"}
+                {loading ? "Creating..." : "Create Recipe"}
             </button>
         </div>
     </form>

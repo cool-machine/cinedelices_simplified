@@ -83,24 +83,24 @@
 </script>
 
 <div class="recipes-page">
-    <h1>🍽️ Toutes les recettes</h1>
+    <h1>🍽️ All Recipes</h1>
 
     <div class="filters">
         <input
             type="text"
-            placeholder="Rechercher..."
+            placeholder="Search..."
             bind:value={searchQuery}
         />
 
         <select bind:value={selectedCategory}>
-            <option value="">Toutes les catégories</option>
+            <option value="">All Categories</option>
             {#each categories as cat}
                 <option value={cat.id}>{cat.name}</option>
             {/each}
         </select>
 
         <select bind:value={selectedMedia}>
-            <option value="">Tous les médias</option>
+            <option value="">All Movies/Shows</option>
             {#each media as m}
                 <option value={m.id}>{m.title}</option>
             {/each}
@@ -108,11 +108,11 @@
     </div>
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else if filteredRecipes.length === 0}
-        <p class="empty">Aucune recette trouvée</p>
+        <p class="empty">No recipes found</p>
     {:else}
         <div class="recipe-grid">
             {#each filteredRecipes as recipe}
@@ -125,16 +125,14 @@
                         {/if}
                     </div>
                     <div class="recipe-info">
+                        {#if recipe.media}
+                            <p class="movie-name">🎬 {recipe.media.title}</p>
+                        {/if}
                         <h3>{recipe.title}</h3>
                         {#if recipe.author}
-                            <p class="author">Par {recipe.author.username}</p>
+                            <p class="author">By {recipe.author.username}</p>
                         {/if}
                         <div class="tags">
-                            {#if recipe.media}
-                                <span class="media-tag"
-                                    >{recipe.media.title}</span
-                                >
-                            {/if}
                             {#if recipe.category}
                                 <span class="category-tag"
                                     >{recipe.category.name}</span
@@ -229,6 +227,13 @@
         padding: 1rem;
     }
 
+    .movie-name {
+        color: var(--or-cinema, #D4AF37);
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
     .recipe-info h3 {
         color: #eee;
         margin-bottom: 0.25rem;
@@ -246,19 +251,10 @@
         flex-wrap: wrap;
     }
 
-    .media-tag,
     .category-tag {
         padding: 0.25rem 0.5rem;
         border-radius: 4px;
         font-size: 0.75rem;
-    }
-
-    .media-tag {
-        background: #e94560;
-        color: white;
-    }
-
-    .category-tag {
         background: #0f3460;
         color: #ccc;
     }

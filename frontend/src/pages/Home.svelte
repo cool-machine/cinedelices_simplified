@@ -96,11 +96,11 @@
         </div>
 
         {#if loading}
-            <p class="loading">Chargement...</p>
+            <p class="loading">Loading...</p>
         {:else if error}
             <p class="error">{error}</p>
         {:else if featuredRecipes.length === 0}
-            <p class="empty">Aucune recette disponible</p>
+            <p class="empty">No recipes available</p>
         {:else}
             <div class="film-strip-container">
                 <div class="film-perforations left"></div>
@@ -184,7 +184,7 @@
                     {/each}
                 </div>
             {:else}
-                <p class="empty">Plus de recettes bientôt!</p>
+                <p class="empty">More recipes coming soon!</p>
             {/if}
         </div>
         <div class="film-strip-bottom gold"></div>

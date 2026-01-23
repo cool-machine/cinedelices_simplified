@@ -73,7 +73,7 @@
     }
 
     async function deleteMedia(id) {
-        if (!confirm('Supprimer ce média ?')) return;
+        if (!confirm('Delete this media?')) return;
         try {
             await api.admin.deleteMedia(id);
             media = media.filter(m => m.id !== id);
@@ -85,50 +85,50 @@
 
 <div class="admin-page">
     <div class="page-header">
-        <h1>🎬 Gestion des médias</h1>
+        <h1>🎬 Media Management</h1>
         <div class="header-actions">
-            <button class="add-btn" on:click={startCreate}>+ Nouveau média</button>
-            <a href="/admin" use:link class="back-btn">← Retour</a>
+            <button class="add-btn" on:click={startCreate}>+ New Media</button>
+            <a href="/admin" use:link class="back-btn">← Back</a>
         </div>
     </div>
 
     {#if showForm}
         <div class="form-card">
-            <h3>{editingId ? 'Modifier' : 'Nouveau'} média</h3>
+            <h3>{editingId ? 'Edit' : 'New'} Media</h3>
             <form on:submit|preventDefault={handleSubmit}>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Titre</label>
+                        <label>Title</label>
                         <input type="text" bind:value={formData.title} required />
                     </div>
                     <div class="form-group">
                         <label>Type</label>
                         <select bind:value={formData.type}>
-                            <option value="film">Film</option>
-                            <option value="serie">Série</option>
+                            <option value="film">Movie</option>
+                            <option value="serie">TV Show</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Année de sortie</label>
+                        <label>Release Year</label>
                         <input type="number" bind:value={formData.release_year} min="1900" max="2100" />
                     </div>
                     <div class="form-group">
-                        <label>URL du poster</label>
+                        <label>Poster URL</label>
                         <input type="url" bind:value={formData.poster_url} placeholder="https://..." />
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="button" class="cancel" on:click={cancelForm}>Annuler</button>
-                    <button type="submit">{editingId ? 'Modifier' : 'Créer'}</button>
+                    <button type="button" class="cancel" on:click={cancelForm}>Cancel</button>
+                    <button type="submit">{editingId ? 'Save' : 'Create'}</button>
                 </div>
             </form>
         </div>
     {/if}
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else}
@@ -137,9 +137,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Titre</th>
+                        <th>Title</th>
                         <th>Type</th>
-                        <th>Année</th>
+                        <th>Year</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -157,7 +157,7 @@
                         </tr>
                     {:else}
                         <tr>
-                            <td colspan="5" class="empty">Aucun média</td>
+                            <td colspan="5" class="empty">No media</td>
                         </tr>
                     {/each}
                 </tbody>

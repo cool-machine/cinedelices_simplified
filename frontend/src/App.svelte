@@ -21,7 +21,7 @@
     <Footer />
     <CookieBanner />
   {:else}
-    <div class="loading">Chargement...</div>
+    <div class="loading">Loading...</div>
   {/if}
 </div>
 

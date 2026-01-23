@@ -28,7 +28,7 @@
     });
 
     async function handleDelete() {
-        if (!confirm("Supprimer cette recette ?")) return;
+        if (!confirm("Delete this recipe?")) return;
         try {
             await api.deleteRecipe(params.id);
             push("/recipes");
@@ -52,7 +52,7 @@
 
 <div class="recipe-detail-page">
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else if recipe}
@@ -67,18 +67,18 @@
                 <div class="recipe-header-info">
                     <div class="header-left">
                         <p class="recipe-label">
-                            Titre: <span class="recipe-title-text"
+                            Title: <span class="recipe-title-text"
                                 >{recipe.title}</span
                             >
                         </p>
                         <p class="recipe-description">
                             {recipe.description ||
-                                "Un plat traditionnel de légumes mijotés du film"}
+                                "A delicious dish inspired by the film"}
                         </p>
                     </div>
                     <div class="header-right">
                         <p class="author-info">
-                            Auteur: <span
+                            Author: <span
                                 >{recipe.author?.username || "Chef"}</span
                             >
                         </p>
@@ -86,7 +86,7 @@
                             Date: <span
                                 >{new Date(
                                     recipe.created_at,
-                                ).toLocaleDateString("fr-FR", {
+                                ).toLocaleDateString("en-US", {
                                     day: "2-digit",
                                     month: "short",
                                     year: "numeric",
@@ -113,57 +113,47 @@
                 <div class="meta-icons-row">
                     <div class="meta-item">
                         <div class="meta-icon">⏱️</div>
-                        <span class="meta-label">Temps Préparation</span>
+                        <span class="meta-label">Prep Time</span>
                         <span class="meta-value"
                             >{recipe.prep_time || 45} min</span
                         >
                     </div>
                     <div class="meta-item">
                         <div class="meta-icon">🍳</div>
-                        <span class="meta-label">Temps Cuisson</span>
+                        <span class="meta-label">Cook Time</span>
                         <span class="meta-value"
                             >{recipe.cook_time || 30} min</span
                         >
                     </div>
                     <div class="meta-item">
                         <div class="meta-icon">👥</div>
-                        <span class="meta-label">Portions</span>
+                        <span class="meta-label">Servings</span>
                         <span class="meta-value"
-                            >{recipe.servings || 4} pers</span
+                            >{recipe.servings || 4}</span
                         >
                     </div>
                     <div class="meta-item">
                         <div class="meta-icon">📊</div>
-                        <span class="meta-label">Difficulté</span>
+                        <span class="meta-label">Difficulty</span>
                         <span class="meta-value"
-                            >{recipe.difficulty || "Moyen"}</span
+                            >{recipe.difficulty || "Medium"}</span
                         >
                     </div>
                     <div class="meta-item">
                         <div class="meta-icon">📁</div>
-                        <span class="meta-label">Catégorie</span>
+                        <span class="meta-label">Category</span>
                         <span class="meta-value"
-                            >{recipe.category?.name || "Plat Principal"}</span
+                            >{recipe.category?.name || "Main Course"}</span
                         >
                     </div>
                 </div>
 
-                <!-- Ingredients, Icons, Chef Hat Row -->
+                <!-- Ingredients Row -->
                 <div class="ingredients-row">
-                    <div class="ingredient-col">
+                    <div class="ingredient-col full-width">
                         <div class="col-icon">🥗</div>
                         <h3>Ingredients</h3>
-                        <p>{recipe.ingredients || "Ingrédients à venir"}</p>
-                    </div>
-                    <div class="ingredient-col">
-                        <div class="col-icon">🫒</div>
-                        <h3>Icons</h3>
-                        <p>Olive Oil, Herbs de Provence, Salt, Pepper</p>
-                    </div>
-                    <div class="ingredient-col">
-                        <div class="col-icon">👨‍🍳</div>
-                        <h3>Chef Hat</h3>
-                        <p>Eggplant, brosssonnibes</p>
+                        <p>{recipe.ingredients || "Ingredients coming soon"}</p>
                     </div>
                 </div>
             </div>
@@ -211,10 +201,10 @@
                         <a
                             href="/recipes/{recipe.id}/edit"
                             use:link
-                            class="edit-btn">✏️ Modifier</a
+                            class="edit-btn">✏️ Edit</a
                         >
                         <button class="delete-btn" on:click={handleDelete}
-                            >🗑️ Supprimer</button
+                            >🗑️ Delete</button
                         >
                     {/if}
                 </div>
@@ -235,7 +225,7 @@
                         <span class="step-number">1</span>
                         <p>
                             {recipe.instructions ||
-                                "Suivez les étapes de la recette..."}
+                                "Follow the recipe steps..."}
                         </p>
                     </div>
                 {/each}
@@ -391,7 +381,7 @@
     /* Ingredients Row */
     .ingredients-row {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
         gap: 1rem;
         padding: 1.5rem;
         background: rgba(139, 0, 0, 0.2);
@@ -400,6 +390,10 @@
 
     .ingredient-col {
         text-align: center;
+    }
+
+    .ingredient-col.full-width {
+        grid-column: 1 / -1;
     }
 
     .col-icon {

@@ -29,12 +29,12 @@
         localError = '';
         
         if (password !== confirmPassword) {
-            localError = 'Les mots de passe ne correspondent pas';
+            localError = 'Passwords do not match';
             return;
         }
 
         if (password.length < 8) {
-            localError = 'Le mot de passe doit contenir au moins 8 caractères';
+            localError = 'Password must be at least 8 characters';
             return;
         }
 
@@ -62,7 +62,7 @@
 
 <div class="auth-page">
     <div class="auth-card">
-        <h1>Inscription</h1>
+        <h1>Register</h1>
         
         {#if $auth.error || localError}
             <div class="error">{$auth.error || localError}</div>
@@ -70,7 +70,7 @@
 
         <form on:submit|preventDefault={handleSubmit}>
             <div class="form-group">
-                <label for="username">Nom d'utilisateur</label>
+                <label for="username">Username</label>
                 <input 
                     type="text" 
                     id="username" 
@@ -93,7 +93,7 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Mot de passe</label>
+                <label for="password">Password</label>
                 <input 
                     type="password" 
                     id="password" 
@@ -105,7 +105,7 @@
             </div>
 
             <div class="form-group">
-                <label for="confirmPassword">Confirmer le mot de passe</label>
+                <label for="confirmPassword">Confirm Password</label>
                 <input 
                     type="password" 
                     id="confirmPassword" 
@@ -116,12 +116,12 @@
             </div>
 
             <button type="submit" disabled={loading}>
-                {loading ? 'Inscription...' : "S'inscrire"}
+                {loading ? 'Registering...' : "Register"}
             </button>
         </form>
 
         <p class="switch">
-            Déjà un compte ? <a href="/login{$querystring ? '?' + $querystring : ''}" use:link>Se connecter</a>
+            Already have an account? <a href="/login{$querystring ? '?' + $querystring : ''}" use:link>Log in</a>
         </p>
     </div>
 </div>

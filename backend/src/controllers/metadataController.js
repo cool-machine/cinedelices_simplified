@@ -22,7 +22,7 @@ export const getAllMedia = async (req, res) => {
 
 export const createMedia = async (req, res) => {
     try {
-        const { title, type, release_year, tmdb_id, poster_url } = req.body;
+        const { title, type, release_year, tmdb_id, poster_url, image_url } = req.body;
 
         // Simple validation or duplicate check could go here
 
@@ -30,8 +30,7 @@ export const createMedia = async (req, res) => {
             title,
             type,
             release_year,
-            tmdb_id,
-            poster_url
+            image_url: image_url || poster_url // Support both field names
         });
 
         res.status(201).json(newMedia);

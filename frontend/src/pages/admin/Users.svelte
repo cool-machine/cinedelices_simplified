@@ -28,7 +28,7 @@
 
     async function toggleRole(user) {
         const newRole = user.role === 'admin' ? 'user' : 'admin';
-        if (!confirm(`Changer le rôle de ${user.username} en ${newRole} ?`)) return;
+        if (!confirm(`Change ${user.username}'s role to ${newRole}?`)) return;
         
         try {
             await api.admin.updateUser(user.id, { role: newRole });
@@ -41,10 +41,10 @@
 
     async function deleteUser(id) {
         if (id === $auth.user.id) {
-            alert('Vous ne pouvez pas supprimer votre propre compte');
+            alert('You cannot delete your own account');
             return;
         }
-        if (!confirm('Supprimer cet utilisateur ?')) return;
+        if (!confirm('Delete this user?')) return;
         
         try {
             await api.admin.deleteUser(id);
@@ -57,12 +57,12 @@
 
 <div class="admin-page">
     <div class="page-header">
-        <h1>👥 Gestion des utilisateurs</h1>
-        <a href="/admin" use:link class="back-btn">← Retour</a>
+        <h1>👥 User Management</h1>
+        <a href="/admin" use:link class="back-btn">← Back</a>
     </div>
 
     {#if loading}
-        <p class="loading">Chargement...</p>
+        <p class="loading">Loading...</p>
     {:else if error}
         <p class="error">{error}</p>
     {:else}
@@ -71,10 +71,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Utilisateur</th>
+                        <th>User</th>
                         <th>Email</th>
-                        <th>Rôle</th>
-                        <th>Inscrit le</th>
+                        <th>Role</th>
+                        <th>Joined</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -94,7 +94,7 @@
                                 <button 
                                     class="role-btn" 
                                     on:click={() => toggleRole(user)}
-                                    title="Changer le rôle"
+                                    title="Change role"
                                 >
                                     {user.role === 'admin' ? '👤' : '🛡️'}
                                 </button>
@@ -109,7 +109,7 @@
                         </tr>
                     {:else}
                         <tr>
-                            <td colspan="6" class="empty">Aucun utilisateur</td>
+                            <td colspan="6" class="empty">No users</td>
                         </tr>
                     {/each}
                 </tbody>

@@ -13,36 +13,36 @@
             <a href="/" use:link>🎬 Ciné Délices</a>
         </div>
         <ul>
-            <li><a href="/" use:link>Accueil</a></li>
-            <li><a href="/movies" use:link>Films</a></li>
-            <li><a href="/recipes" use:link>Recettes</a></li>
+            <li><a href="/" use:link>Home</a></li>
+            <li><a href="/movies" use:link>Movies</a></li>
+            <li><a href="/recipes" use:link>Recipes</a></li>
             {#if $auth.user}
                 <li>
                     <a href="/recipes/new" use:link class="create-link"
-                        >+ Créer</a
+                        >+ Create</a
                     >
                 </li>
-                <li><a href="/profile/{$auth.user.id}" use:link>Profil</a></li>
+                <li><a href="/profile/{$auth.user.id}" use:link>Profile</a></li>
                 {#if $auth.user.role === "admin"}
                     <li><a href="/admin" use:link>Admin</a></li>
                 {/if}
                 <li>
                     <button
                         class="btn btn-small btn-secondary"
-                        on:click={handleLogout}>Déconnexion</button
+                        on:click={handleLogout}>Logout</button
                     >
                 </li>
             {:else}
                 <li>
                     <a href="/login" use:link class="btn btn-small btn-gold"
-                        >Connexion</a
+                        >Login</a
                     >
                 </li>
                 <li>
                     <a
                         href="/register"
                         use:link
-                        class="btn btn-small btn-secondary">Inscription</a
+                        class="btn btn-small btn-secondary">Register</a
                     >
                 </li>
             {/if}

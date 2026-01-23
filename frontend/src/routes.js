@@ -16,6 +16,8 @@ import AdminUsers from './pages/admin/Users.svelte';
 import NotFound from './pages/NotFound.svelte';
 import Legal from './pages/Legal.svelte';
 import Privacy from './pages/Privacy.svelte';
+import About from './pages/About.svelte';
+import Contact from './pages/Contact.svelte';
 
 
 export const routes = {
@@ -36,5 +38,7 @@ export const routes = {
     '/admin/users': AdminUsers,
     '/legal': Legal,
     '/privacy': Privacy,
+    '/about': About,
+    '/contact': Contact,
     '*': NotFound
 };

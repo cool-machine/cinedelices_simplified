@@ -46,7 +46,7 @@
 
 <div class="auth-page">
     <div class="auth-card">
-        <h1>Connexion</h1>
+        <h1>Login</h1>
         
         {#if $auth.error}
             <div class="error">{$auth.error}</div>
@@ -65,7 +65,7 @@
             </div>
 
             <div class="form-group">
-                <label for="password">Mot de passe</label>
+                <label for="password">Password</label>
                 <input 
                     type="password" 
                     id="password" 
@@ -76,12 +76,12 @@
             </div>
 
             <button type="submit" disabled={loading}>
-                {loading ? 'Connexion...' : 'Se connecter'}
+                {loading ? 'Logging in...' : 'Log In'}
             </button>
         </form>
 
         <p class="switch">
-            Pas encore de compte ? <a href="/register{$querystring ? '?' + $querystring : ''}" use:link>S'inscrire</a>
+            Don't have an account? <a href="/register{$querystring ? '?' + $querystring : ''}" use:link>Register</a>
         </p>
     </div>
 </div>
