@@ -175,23 +175,18 @@
                     </div>
                 {/if}
 
+                {#if recipe.media}
+                    <h2 class="movie-title">{recipe.media.title}</h2>
+                    <p class="movie-type">
+                        {recipe.media.type === 'serie' ? '📺 TV Show' : '🎬 Movie'}
+                    </p>
+                {/if}
+
                 <h3 class="sidebar-title">Info</h3>
                 <div class="movie-info">
                     <p>
                         <strong>Released:</strong>
-                        {recipe.media?.release_year || "2007"}
-                    </p>
-                    <p>
-                        <strong>Director:</strong>
-                        {recipe.media?.director || "Brad Bird"}
-                    </p>
-                    <p>
-                        <strong>Studio:</strong>
-                        {recipe.media?.studio || "Pixar"}
-                    </p>
-                    <p>
-                        <strong>Rating:</strong>
-                        {recipe.media?.rating || "8.1"}/10
+                        {recipe.media?.release_year || "N/A"}
                     </p>
                 </div>
 
@@ -446,6 +441,22 @@
         font-family: var(--font-title);
         font-size: 2rem;
         color: var(--or-cinema);
+    }
+
+    .movie-title {
+        font-family: var(--font-title);
+        font-size: 1.5rem;
+        color: var(--or-cinema);
+        text-align: center;
+        margin: 1rem 0 0.25rem;
+        line-height: 1.2;
+    }
+
+    .movie-type {
+        text-align: center;
+        color: #888;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
     }
 
     .sidebar-title {
