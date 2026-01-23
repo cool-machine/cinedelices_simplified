@@ -3,51 +3,50 @@
 </script>
 
 <div class="legal-page movie-container">
-    <h1>Mentions Légales</h1>
+    <h1>Terms of Service</h1>
 
     <section>
-        <h2>1. Édition du site</h2>
+        <h2>1. Site Publisher</h2>
         <p>
-            Le présent site, accessible à l’URL www.cinedelices.fr (le « Site
-            »), est édité par :
+            This website, accessible at www.cinedelices.com (the "Site"),
+            is published by:
         </p>
         <p>
-            <strong>L'équipe Ciné Délices</strong>, étudiants de l'école
-            O'clock, résidant au 10 Rue du Cinéma, 75000 Paris, de nationalité
-            Française (France).
-        </p>
-    </section>
-
-    <section>
-        <h2>2. Hébergement</h2>
-        <p>
-            Le Site est hébergé par la société <strong>Microsoft Azure</strong>,
-            situé au 1 Microsoft Way, Redmond, WA 98052, États-Unis.
+            <strong>The Ciné Délices Team</strong>, students at O'clock school,
+            located at 10 Cinema Street, 75000 Paris, France.
         </p>
     </section>
 
     <section>
-        <h2>3. Directeur de publication</h2>
-        <p>Le Directeur de la publication du Site est l'équipe Ciné Délices.</p>
+        <h2>2. Hosting</h2>
+        <p>
+            The Site is hosted by <strong>Microsoft Azure</strong>,
+            located at 1 Microsoft Way, Redmond, WA 98052, United States.
+        </p>
     </section>
 
     <section>
-        <h2>4. Nous contacter</h2>
+        <h2>3. Publication Director</h2>
+        <p>The Publication Director of the Site is the Ciné Délices team.</p>
+    </section>
+
+    <section>
+        <h2>4. Contact Us</h2>
         <p>
-            Par email : <a
-                href="mailto:contact@cinedelices.fr"
-                class="gold-link">contact@cinedelices.fr</a
+            By email: <a
+                href="mailto:contact@cinedelices.com"
+                class="gold-link">contact@cinedelices.com</a
             >
         </p>
     </section>
 
     <section>
-        <h2>5. Données personnelles</h2>
+        <h2>5. Personal Data</h2>
         <p>
-            Le traitement de vos données à caractère personnel est régi par
-            notre <a href="/privacy" use:link class="gold-link"
-                >Charte du respect de la vie privée</a
-            >, disponible depuis la section "Politique de Confidentialité".
+            The processing of your personal data is governed by
+            our <a href="/privacy" use:link class="gold-link"
+                >Privacy Policy</a
+            >, available in the "Privacy Policy" section.
         </p>
     </section>
 </div>

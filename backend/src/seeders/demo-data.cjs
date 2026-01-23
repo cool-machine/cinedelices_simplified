@@ -11,7 +11,7 @@ module.exports = {
         // Insert users
         await queryInterface.bulkInsert('users', [
             {
-                email: 'admin@cinedelices.fr',
+                email: 'admin@cinedelices.com',
                 password_hash: hashedPassword,
                 username: 'admin',
                 role: 'admin',
@@ -19,7 +19,7 @@ module.exports = {
                 updated_at: new Date()
             },
             {
-                email: 'user@cinedelices.fr',
+                email: 'user@cinedelices.com',
                 password_hash: hashedPassword,
                 username: 'ChefCinema',
                 role: 'user',
@@ -31,26 +31,26 @@ module.exports = {
         // Insert categories
         await queryInterface.bulkInsert('categories', [
             {
-                name: 'Entrée',
-                description: 'Plats pour commencer le repas',
+                name: 'Appetizer',
+                description: 'Dishes to start the meal',
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                name: 'Plat principal',
-                description: 'Plats de résistance',
+                name: 'Main Course',
+                description: 'Hearty main dishes',
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
                 name: 'Dessert',
-                description: 'Douceurs sucrées pour finir le repas',
+                description: 'Sweet treats to end the meal',
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                name: 'Boisson',
-                description: 'Cocktails et boissons inspirés du cinéma',
+                name: 'Beverage',
+                description: 'Cocktails and drinks inspired by cinema',
                 created_at: new Date(),
                 updated_at: new Date()
             }
@@ -67,7 +67,7 @@ module.exports = {
                 updated_at: new Date()
             },
             {
-                title: 'Le Parrain',
+                title: 'The Godfather',
                 type: 'film',
                 image_url: 'https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
                 release_year: 1972,
@@ -184,16 +184,16 @@ module.exports = {
         );
 
         // Map to get IDs
-        const adminUser = users.find(u => u.email === 'admin@cinedelices.fr');
-        const regularUser = users.find(u => u.email === 'user@cinedelices.fr');
-        const entree = categories.find(c => c.name === 'Entrée');
-        const platPrincipal = categories.find(c => c.name === 'Plat principal');
+        const adminUser = users.find(u => u.email === 'admin@cinedelices.com');
+        const regularUser = users.find(u => u.email === 'user@cinedelices.com');
+        const appetizer = categories.find(c => c.name === 'Appetizer');
+        const mainCourse = categories.find(c => c.name === 'Main Course');
         const dessert = categories.find(c => c.name === 'Dessert');
-        const boisson = categories.find(c => c.name === 'Boisson');
+        const beverage = categories.find(c => c.name === 'Beverage');
 
         // Get all media IDs
         const ratatouilleMedia = media.find(m => m.title === 'Ratatouille');
-        const parrainMedia = media.find(m => m.title === 'Le Parrain');
+        const godfatherMedia = media.find(m => m.title === 'The Godfather');
         const juliaMedia = media.find(m => m.title === 'Julie & Julia');
         const breakingBadMedia = media.find(m => m.title === 'Breaking Bad');
         const gotMedia = media.find(m => m.title === 'Game of Thrones');
@@ -211,109 +211,109 @@ module.exports = {
         await queryInterface.bulkInsert('recipes', [
             // === NOW PLAYING (first 4) ===
             {
-                title: 'Ratatouille du Chef Gusteau',
-                description: 'La célèbre ratatouille du film Pixar, revisitée en tian provençal élégant.',
-                ingredients: `- 2 courgettes\n- 2 aubergines\n- 4 tomates\n- 1 poivron rouge\n- Huile d'olive\n- Herbes de Provence`,
-                instructions: `1. Préchauffer le four à 180°C.\n2. Couper les légumes en rondelles fines.\n3. Disposer en alternance dans un plat.\n4. Cuire au four 45 minutes.`,
-                anecdote: 'Ce plat permet à Rémy de conquérir le critique Anton Ego.',
-                difficulty: 'moyen',
+                title: 'Chef Gusteau\'s Ratatouille',
+                description: 'The famous ratatouille from the Pixar film, reimagined as an elegant Provençal tian.',
+                ingredients: `- 2 zucchinis\n- 2 eggplants\n- 4 tomatoes\n- 1 red bell pepper\n- Olive oil\n- Herbs de Provence`,
+                instructions: `1. Preheat oven to 350°F (180°C).\n2. Cut vegetables into thin rounds.\n3. Arrange in alternating pattern in a baking dish.\n4. Bake for 45 minutes.`,
+                anecdote: 'This dish allows Remy to win over the critic Anton Ego.',
+                difficulty: 'medium',
                 prep_time: 30,
                 cook_time: 45,
                 image_url: 'https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?w=600&q=80',
                 user_id: adminUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: ratatouilleMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Cannoli Siciliens du Parrain',
-                description: 'Les fameux cannoli de la scène "Leave the gun, take the cannoli".',
-                ingredients: `- 250g de farine\n- 500g de ricotta\n- 150g de sucre glace\n- Pépites de chocolat`,
-                instructions: `1. Préparer la pâte.\n2. Frire les tubes.\n3. Farcir avec ricotta sucrée.\n4. Décorer.`,
-                anecdote: 'Réplique culte du Parrain devenue emblématique.',
-                difficulty: 'difficile',
+                title: 'Sicilian Cannoli from The Godfather',
+                description: 'The famous cannoli from the scene "Leave the gun, take the cannoli."',
+                ingredients: `- 250g flour\n- 500g ricotta\n- 150g powdered sugar\n- Chocolate chips`,
+                instructions: `1. Prepare the dough.\n2. Fry the tubes.\n3. Fill with sweetened ricotta.\n4. Decorate.`,
+                anecdote: 'Iconic line from The Godfather that became legendary.',
+                difficulty: 'hard',
                 prep_time: 60,
                 cook_time: 30,
                 image_url: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80',
                 user_id: adminUser.id,
                 category_id: dessert.id,
-                media_id: parrainMedia.id,
+                media_id: godfatherMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Bœuf Bourguignon de Julia Child',
-                description: 'Le classique français immortalisé dans Julie & Julia.',
-                ingredients: `- 1.5kg de bœuf\n- 1 bouteille de vin rouge\n- 500g de champignons\n- Lardons`,
-                instructions: `1. Faire revenir les lardons.\n2. Dorer le bœuf.\n3. Ajouter le vin.\n4. Cuire 3 heures.`,
-                anecdote: 'Julia Child a perfectionné cette recette pendant des années.',
-                difficulty: 'difficile',
+                title: 'Julia Child\'s Boeuf Bourguignon',
+                description: 'The French classic immortalized in Julie & Julia.',
+                ingredients: `- 3 lbs beef chuck\n- 1 bottle red wine\n- 1 lb mushrooms\n- Bacon lardons`,
+                instructions: `1. Sauté the bacon.\n2. Brown the beef.\n3. Add the wine.\n4. Cook for 3 hours.`,
+                anecdote: 'Julia Child perfected this recipe over many years.',
+                difficulty: 'hard',
                 prep_time: 45,
                 cook_time: 180,
                 image_url: 'https://images.unsplash.com/photo-1534939561126-855b8675edd7?w=600&q=80',
                 user_id: regularUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: juliaMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Poulet Los Pollos Hermanos',
-                description: 'Inspiré du restaurant de Gus Fring dans Breaking Bad.',
-                ingredients: `- 1 poulet découpé\n- 500ml de babeurre\n- 300g de farine\n- Épices secrètes`,
-                instructions: `1. Mariner 4 heures.\n2. Paner dans la farine épicée.\n3. Frire 15 minutes.\n4. Servir chaud.`,
-                anecdote: 'Los Pollos Hermanos existe vraiment lors d\'événements promos!',
-                difficulty: 'moyen',
+                title: 'Los Pollos Hermanos Chicken',
+                description: 'Inspired by Gus Fring\'s restaurant in Breaking Bad.',
+                ingredients: `- 1 whole chicken, cut up\n- 2 cups buttermilk\n- 2 cups flour\n- Secret spices`,
+                instructions: `1. Marinate for 4 hours.\n2. Coat in seasoned flour.\n3. Fry for 15 minutes.\n4. Serve hot.`,
+                anecdote: 'Los Pollos Hermanos actually exists at promotional events!',
+                difficulty: 'medium',
                 prep_time: 30,
                 cook_time: 20,
                 image_url: 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&q=80',
                 user_id: regularUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: breakingBadMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             // === COMING SOON CAROUSEL (recipes 5-14) ===
             {
-                title: 'Pigeon en Croûte de Winterfell',
-                description: 'Un plat royal digne des banquets de Westeros.',
-                ingredients: `- 2 pigeons\n- 400g pâte feuilletée\n- 200g foie gras\n- Champignons des bois`,
-                instructions: `1. Désosser les pigeons.\n2. Envelopper en croûte.\n3. Cuire 25 min à 200°C.`,
-                anecdote: 'Les festins de Game of Thrones sont légendaires.',
-                difficulty: 'difficile',
+                title: 'Winterfell Pigeon Pie',
+                description: 'A royal dish worthy of the banquets of Westeros.',
+                ingredients: `- 2 pigeons\n- 400g puff pastry\n- 200g foie gras\n- Wild mushrooms`,
+                instructions: `1. Debone the pigeons.\n2. Wrap in pastry.\n3. Bake 25 min at 400°F (200°C).`,
+                anecdote: 'The feasts of Game of Thrones are legendary.',
+                difficulty: 'hard',
                 prep_time: 45,
                 cook_time: 25,
                 image_url: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=600&q=80',
                 user_id: adminUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: gotMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Le Big Kahuna Burger',
-                description: 'Le fameux burger de Pulp Fiction. "That is a tasty burger!"',
-                ingredients: `- 500g bœuf haché\n- 4 pains briochés\n- Fromage américain\n- Bacon`,
-                instructions: `1. Former les steaks.\n2. Cuire sur grill.\n3. Assembler avec garnitures.\n4. Servir avec milkshake.`,
-                anecdote: 'Scène emblématique avec Samuel L. Jackson.',
-                difficulty: 'facile',
+                title: 'The Big Kahuna Burger',
+                description: 'The famous burger from Pulp Fiction. "That is a tasty burger!"',
+                ingredients: `- 1 lb ground beef\n- 4 brioche buns\n- American cheese\n- Bacon`,
+                instructions: `1. Form the patties.\n2. Grill to perfection.\n3. Assemble with toppings.\n4. Serve with a milkshake.`,
+                anecdote: 'Iconic scene with Samuel L. Jackson.',
+                difficulty: 'easy',
                 prep_time: 15,
                 cook_time: 10,
                 image_url: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80',
                 user_id: regularUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: pulpMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Crème Brûlée d\'Amélie',
-                description: 'Le dessert préféré d\'Amélie Poulain.',
-                ingredients: `- 500ml crème fraîche\n- 6 jaunes d'œufs\n- 100g sucre\n- Vanille`,
-                instructions: `1. Faire infuser vanille.\n2. Mélanger aux jaunes.\n3. Cuire au bain-marie.\n4. Caraméliser au chalumeau.`,
-                anecdote: 'Amélie adore casser la croûte de sa crème brûlée.',
-                difficulty: 'moyen',
+                title: 'Amélie\'s Crème Brûlée',
+                description: 'Amélie Poulain\'s favorite dessert.',
+                ingredients: `- 2 cups heavy cream\n- 6 egg yolks\n- 1/2 cup sugar\n- Vanilla bean`,
+                instructions: `1. Infuse the vanilla.\n2. Mix with egg yolks.\n3. Bake in a water bath.\n4. Caramelize with a torch.`,
+                anecdote: 'Amélie loves cracking the caramelized top of her crème brûlée.',
+                difficulty: 'medium',
                 prep_time: 20,
                 cook_time: 45,
                 image_url: 'https://images.unsplash.com/photo-1470324161839-ce2bb6fa6bc3?w=600&q=80',
@@ -324,12 +324,12 @@ module.exports = {
                 updated_at: new Date()
             },
             {
-                title: 'Truffes au Chocolat',
-                description: 'Les truffes sensuelles du film Chocolat.',
-                ingredients: `- 200g chocolat noir\n- 200ml crème fraîche\n- Cacao en poudre\n- Piment secret`,
-                instructions: `1. Fondre le chocolat.\n2. Mélanger à la crème.\n3. Former des boules.\n4. Rouler dans le cacao.`,
-                anecdote: 'Une touche de piment était le secret de Vianne.',
-                difficulty: 'facile',
+                title: 'Chocolate Truffles',
+                description: 'The sensuous truffles from the film Chocolat.',
+                ingredients: `- 200g dark chocolate\n- 1 cup heavy cream\n- Cocoa powder\n- Secret chili pepper`,
+                instructions: `1. Melt the chocolate.\n2. Mix with cream.\n3. Form into balls.\n4. Roll in cocoa powder.`,
+                anecdote: 'A touch of chili was Vianne\'s secret.',
+                difficulty: 'easy',
                 prep_time: 30,
                 cook_time: 0,
                 image_url: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&q=80',
@@ -340,60 +340,60 @@ module.exports = {
                 updated_at: new Date()
             },
             {
-                title: 'Timpano de Big Night',
-                description: 'Le festin italien légendaire du film Big Night.',
-                ingredients: `- Pâtes\n- Viande\n- Œufs durs\n- Sauce tomate\n- Mozzarella`,
-                instructions: `1. Préparer les pâtes.\n2. Assembler en couches dans un moule.\n3. Cuire au four 1h.\n4. Démouler et servir.`,
-                anecdote: 'Le Timpano est le point culminant du film.',
-                difficulty: 'difficile',
+                title: 'Big Night Timpano',
+                description: 'The legendary Italian feast from the film Big Night.',
+                ingredients: `- Pasta\n- Meat\n- Hard-boiled eggs\n- Tomato sauce\n- Mozzarella`,
+                instructions: `1. Prepare the pasta.\n2. Layer in a mold.\n3. Bake for 1 hour.\n4. Unmold and serve.`,
+                anecdote: 'The Timpano is the climax of the film.',
+                difficulty: 'hard',
                 prep_time: 90,
                 cook_time: 60,
                 image_url: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80',
                 user_id: adminUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: bigNightMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Le Festin de Babette',
-                description: 'Le repas français somptueux du chef Babette.',
-                ingredients: `- Cailles en sarcophage\n- Blinis Demidoff\n- Vin de Chablis\n- Champagne`,
-                instructions: `1. Préparer les cailles.\n2. Servir les blinis.\n3. Accompagner de champagne.\n4. Finir par les desserts.`,
-                anecdote: 'Babette dépense tout son argent pour ce festin.',
-                difficulty: 'difficile',
+                title: 'Babette\'s Feast',
+                description: 'The sumptuous French meal by chef Babette.',
+                ingredients: `- Quail in puff pastry\n- Blinis Demidoff\n- Chablis wine\n- Champagne`,
+                instructions: `1. Prepare the quails.\n2. Serve the blinis.\n3. Accompany with champagne.\n4. Finish with desserts.`,
+                anecdote: 'Babette spends all her money on this feast.',
+                difficulty: 'hard',
                 prep_time: 120,
                 cook_time: 90,
                 image_url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80',
                 user_id: regularUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: babetteMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Dim Sum du Père Chu',
-                description: 'Les délices chinois de Eat Drink Man Woman.',
-                ingredients: `- Porc haché\n- Crevettes\n- Pâte à wonton\n- Gingembre\n- Sauce soja`,
-                instructions: `1. Préparer la farce.\n2. Former les dim sum.\n3. Cuire à la vapeur 10 min.\n4. Servir avec sauce.`,
-                anecdote: 'Le chef Chu prépare des festins dominicaux pour sa famille.',
-                difficulty: 'moyen',
+                title: 'Father Chu\'s Dim Sum',
+                description: 'The Chinese delights from Eat Drink Man Woman.',
+                ingredients: `- Ground pork\n- Shrimp\n- Wonton wrappers\n- Ginger\n- Soy sauce`,
+                instructions: `1. Prepare the filling.\n2. Form the dim sum.\n3. Steam for 10 minutes.\n4. Serve with sauce.`,
+                anecdote: 'Chef Chu prepares Sunday feasts for his family.',
+                difficulty: 'medium',
                 prep_time: 45,
                 cook_time: 15,
                 image_url: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&q=80',
                 user_id: adminUser.id,
-                category_id: entree.id,
+                category_id: appetizer.id,
                 media_id: eatDrinkMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
                 title: 'Mendl\'s Courtesan au Chocolat',
-                description: 'La pâtisserie signature du Grand Budapest Hotel.',
-                ingredients: `- Pâte à choux\n- Crème pâtissière\n- Chocolat\n- Sucre glace`,
-                instructions: `1. Préparer la pâte à choux.\n2. Former les éclairs.\n3. Cuire et refroidir.\n4. Garnir et glacer au chocolat.`,
-                anecdote: 'Mendl\'s est la pâtisserie favorite de Madame D.',
-                difficulty: 'difficile',
+                description: 'The signature pastry from The Grand Budapest Hotel.',
+                ingredients: `- Choux pastry\n- Pastry cream\n- Chocolate\n- Powdered sugar`,
+                instructions: `1. Prepare the choux pastry.\n2. Form the éclairs.\n3. Bake and cool.\n4. Fill and glaze with chocolate.`,
+                anecdote: 'Mendl\'s is Madame D.\'s favorite pastry shop.',
+                difficulty: 'hard',
                 prep_time: 60,
                 cook_time: 30,
                 image_url: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&q=80',
@@ -404,28 +404,28 @@ module.exports = {
                 updated_at: new Date()
             },
             {
-                title: 'Sushi Omakase de Jiro',
-                description: 'L\'art du sushi selon le maître Jiro Ono.',
-                ingredients: `- Riz à sushi\n- Poisson ultra-frais\n- Wasabi\n- Gingembre mariné`,
-                instructions: `1. Préparer le riz parfait.\n2. Découper le poisson.\n3. Former les nigiri.\n4. Servir immédiatement.`,
-                anecdote: 'Jiro a consacré sa vie à perfectionner le sushi.',
-                difficulty: 'difficile',
+                title: 'Jiro\'s Omakase Sushi',
+                description: 'The art of sushi according to master Jiro Ono.',
+                ingredients: `- Sushi rice\n- Ultra-fresh fish\n- Wasabi\n- Pickled ginger`,
+                instructions: `1. Prepare the perfect rice.\n2. Slice the fish.\n3. Form the nigiri.\n4. Serve immediately.`,
+                anecdote: 'Jiro dedicated his life to perfecting sushi.',
+                difficulty: 'hard',
                 prep_time: 45,
                 cook_time: 0,
                 image_url: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&q=80',
                 user_id: adminUser.id,
-                category_id: platPrincipal.id,
+                category_id: mainCourse.id,
                 media_id: jiroMedia.id,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
-                title: 'Barre de Chocolat Wonka',
-                description: 'Le chocolat magique de l\'usine de Willy Wonka.',
-                ingredients: `- 300g chocolat au lait\n- 100g praliné\n- Noisettes\n- Paillettes d'or comestibles`,
-                instructions: `1. Tempérer le chocolat.\n2. Ajouter le praliné.\n3. Mouler et décorer.\n4. Chercher le ticket d'or!`,
-                anecdote: 'Wonka cache des tickets d\'or dans ses barres.',
-                difficulty: 'moyen',
+                title: 'Wonka Chocolate Bar',
+                description: 'The magical chocolate from Willy Wonka\'s factory.',
+                ingredients: `- 300g milk chocolate\n- 100g praline\n- Hazelnuts\n- Edible gold flakes`,
+                instructions: `1. Temper the chocolate.\n2. Add the praline.\n3. Mold and decorate.\n4. Look for the golden ticket!`,
+                anecdote: 'Wonka hides golden tickets in his bars.',
+                difficulty: 'medium',
                 prep_time: 40,
                 cook_time: 0,
                 image_url: 'https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=600&q=80',

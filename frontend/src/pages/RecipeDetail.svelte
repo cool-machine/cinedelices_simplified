@@ -43,6 +43,16 @@
         return text.split("\n").filter((line) => line.trim());
     }
 
+    // Translate French difficulty to English
+    function translateDifficulty(difficulty) {
+        const translations = {
+            'facile': 'Easy',
+            'moyen': 'Medium',
+            'difficile': 'Hard'
+        };
+        return translations[difficulty] || difficulty || 'Medium';
+    }
+
     $: canEdit =
         $auth.user &&
         recipe &&
@@ -136,7 +146,7 @@
                         <div class="meta-icon">📊</div>
                         <span class="meta-label">Difficulty</span>
                         <span class="meta-value"
-                            >{recipe.difficulty || "Medium"}</span
+                            >{translateDifficulty(recipe.difficulty)}</span
                         >
                     </div>
                     <div class="meta-item">

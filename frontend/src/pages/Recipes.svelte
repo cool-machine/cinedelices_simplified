@@ -36,7 +36,7 @@
                         "https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?w=800",
                     author: { username: "Rémy" },
                     media: { title: "Ratatouille" },
-                    category: { name: "Plat Principal" },
+                    category: { name: "Main Course" },
                 },
                 {
                     id: "mock-2",
@@ -63,7 +63,7 @@
                         "https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?w=800",
                     author: { username: "Harry" },
                     media: { title: "Harry Potter" },
-                    category: { name: "Boissons" },
+                    category: { name: "Beverage" },
                 },
             ];
         } finally {

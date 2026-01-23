@@ -87,7 +87,7 @@
                 <input
                     type="email"
                     bind:value={email}
-                    placeholder="votre@email.com"
+                    placeholder="your@email.com"
                     required
                 />
                 <button type="submit" class="subscribe-btn">Subscribe</button>

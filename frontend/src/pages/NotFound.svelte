@@ -4,8 +4,8 @@
 
 <div class="not-found">
     <h1>404</h1>
-    <p>Page non trouvée</p>
-    <a href="/" use:link class="home-btn">Retour à l'accueil</a>
+    <p>Page not found</p>
+    <a href="/" use:link class="home-btn">Back to Home</a>
 </div>
 
 <style>

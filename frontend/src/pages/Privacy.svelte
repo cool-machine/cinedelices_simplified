@@ -3,62 +3,61 @@
 </script>
 
 <div class="legal-page movie-container">
-    <h1>Politique de Confidentialité</h1>
+    <h1>Privacy Policy</h1>
 
     <section>
-        <h2>1. Collecte des données</h2>
+        <h2>1. Data Collection</h2>
         <p>
-            Dans le cadre de l'utilisation du site Ciné Délices, nous sommes
-            amenés à collecter les données suivantes lorsque vous créez un
-            compte :
+            When using the Ciné Délices website, we collect the following data
+            when you create an account:
         </p>
         <ul>
-            <li>Nom d'utilisateur</li>
-            <li>Adresse email</li>
-            <li>Mot de passe (crypté)</li>
-            <li>Préférences de recettes et favoris</li>
+            <li>Username</li>
+            <li>Email address</li>
+            <li>Password (encrypted)</li>
+            <li>Recipe preferences and favorites</li>
         </ul>
     </section>
 
     <section>
-        <h2>2. Utilisation des données</h2>
-        <p>Vos données sont utilisées uniquement pour :</p>
+        <h2>2. Use of Data</h2>
+        <p>Your data is used only to:</p>
         <ul>
-            <li>Vous permettre de vous connecter à votre compte.</li>
-            <li>Sauvegarder vos recettes favorites.</li>
-            <li>Publier et gérer vos propres recettes.</li>
-            <li>Personnaliser votre expérience sur le site.</li>
+            <li>Allow you to log in to your account.</li>
+            <li>Save your favorite recipes.</li>
+            <li>Publish and manage your own recipes.</li>
+            <li>Personalize your experience on the site.</li>
         </ul>
     </section>
 
     <section>
         <h2>3. Cookies</h2>
         <p>
-            Nous utilisons des cookies strictement nécessaires au fonctionnement
-            du site (gestion de la session utilisateur). Ces cookies ne
-            nécessitent pas de consentement préalable selon la réglementation en
-            vigueur, mais nous vous en informons par transparence.
+            We use cookies strictly necessary for the operation of the site
+            (user session management). These cookies do not require prior
+            consent under current regulations, but we inform you for
+            transparency.
         </p>
     </section>
 
     <section>
-        <h2>4. Vos droits (RGPD)</h2>
+        <h2>4. Your Rights (GDPR)</h2>
         <p>
-            Conformément au Règlement Général sur la Protection des Données
-            (RGPD), vous disposez des droits suivants :
+            In accordance with the General Data Protection Regulation (GDPR),
+            you have the following rights:
         </p>
         <ul>
-            <li>Droit d'accès (savoir quelles données nous avons sur vous).</li>
-            <li>Droit de rectification (modifier vos données).</li>
+            <li>Right of access (know what data we have about you).</li>
+            <li>Right of rectification (modify your data).</li>
             <li>
-                Droit à l'effacement (supprimer votre compte et vos données).
+                Right to erasure (delete your account and your data).
             </li>
         </ul>
         <p>
-            Pour exercer ces droits, vous pouvez nous contacter à <a
-                href="mailto:privacy@cinedelices.fr"
-                class="gold-link">privacy@cinedelices.fr</a
-            > ou supprimer votre compte directement depuis votre page de profil.
+            To exercise these rights, you can contact us at <a
+                href="mailto:privacy@cinedelices.com"
+                class="gold-link">privacy@cinedelices.com</a
+            > or delete your account directly from your profile page.
         </p>
     </section>
 </div>
