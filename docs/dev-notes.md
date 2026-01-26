@@ -76,7 +76,7 @@ Ciné Délices est un site web de recettes de cuisine inspirées du cinéma et d
 
 **Objectif** : Mettre en place l'environnement de développement complet et la structure du projet.
 
-#### Jour 1 : Initialisation du Projet
+#### Step 1 : Initialisation du Projet
 
 | # | Tâche | Commande/Action | Livrable |
 |---|-------|-----------------|----------|
@@ -97,7 +97,7 @@ mkdir -p tests/{unit,integration}
 mkdir -p docker
 ```
 
-#### Jour 2 : Installation des Dépendances
+#### Step 2 : Installation des Dépendances
 
 > **Note** : Ces packages correspondent au programme O'clock
 
@@ -118,7 +118,7 @@ mkdir -p docker
 
 **Note sur les images** : Pour le MVP, les recettes utiliseront des **URLs d'images** (texte) au lieu d'uploads. Cela évite d'utiliser multer et simplifie le projet.
 
-#### Jour 3 : Configuration Docker & Base de Données
+#### Step 3 : Configuration Docker & Base de Données
 
 | # | Tâche | Action | Livrable |
 |---|-------|--------|----------|
@@ -132,7 +132,7 @@ mkdir -p docker
 | 1.28 | Initialiser Sequelize CLI | `npx sequelize-cli init` | Dossiers migrations/seeders | ✅ |
 | 1.29 | Commit Docker setup | `git commit -m "chore(docker): add containerization"` | | ✅ |
 
-#### Jour 4 : Création des Modèles Sequelize
+#### Step 4 : Création des Modèles Sequelize
 
 | # | Tâche | Fichier | Champs principaux |
 |---|-------|---------|-------------------|
@@ -148,7 +148,7 @@ mkdir -p docker
 | 1.39 | Exécuter les seeders | `npx sequelize-cli db:seed:all` | Données insérées | ✅ |
 | 1.40 | Commit modèles | `git commit -m "feat(models): add Sequelize models and migrations"` | | ✅ |
 
-#### Jour 5 : Structure Backend & Routes de Base
+#### Step 5 : Structure Backend & Routes de Base
 
 | # | Tâche | Fichier | Contenu |
 |---|-------|---------|---------|
@@ -163,7 +163,7 @@ mkdir -p docker
 | 1.49 | Tester le serveur | `npm run dev` → `http://localhost:3000` | Serveur fonctionnel | ✅ |
 | 1.50 | Commit structure backend | `git commit -m "feat(backend): add Express routes and middlewares"` | | ✅ |
 
-#### Jours 6-7 : Intégration Frontend de Base
+#### Steps 6-7 : Intégration Frontend de Base
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -196,7 +196,7 @@ mkdir -p docker
 
 **Objectif** : Implémenter toutes les fonctionnalités critiques du MVP.
 
-#### Semaine 2 - Jour 1-2 : Système d'Authentification
+#### Sprint 2 - Step 1-2 : Système d'Authentification
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -212,7 +212,7 @@ mkdir -p docker
 | 2.10 | Tester scénario complet | Manual testing | Register → Login → Access protected → Logout | ✅ |
 | 2.11 | Commit auth | `git commit -m "feat(auth): implement authentication system"` | | ✅ |
 
-#### Semaine 2 - Jour 3-4 : Catalogue & Recherche de Recettes
+#### Sprint 2 - Step 3-4 : Catalogue & Recherche de Recettes
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -228,7 +228,7 @@ mkdir -p docker
 | 2.21 | Tester les filtres | Manual testing | Toutes combinaisons de filtres | ✅ |
 | 2.22 | Commit catalogue | `git commit -m "feat(recipes): add catalog with search and filters"` | | ✅ |
 
-#### Semaine 2 - Jour 5 : Page Détail Recette
+#### Sprint 2 - Step 5 : Page Détail Recette
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -243,7 +243,7 @@ mkdir -p docker
 | 2.31 | Tester page détail | Manual testing | Navigation depuis catalogue | ✅ |
 | 2.32 | Commit page détail | `git commit -m "feat(recipes): add recipe detail page"` | | ✅ |
 
-#### Semaine 2 - Jours 6-7 : Ajout de Recette (Utilisateur Connecté)
+#### Sprint 2 - Steps 6-7 : Ajout de Recette (Utilisateur Connecté)
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -352,7 +352,7 @@ npm install @google/generative-ai
 
 ### 🏛️ Sprint 2 (Suite) : Back-Office Administration
 
-#### Semaine 2 - En parallèle ou après MVP
+#### Sprint 2 - En parallèle ou après MVP
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -430,8 +430,8 @@ npm install @google/generative-ai
 
 | # | Tâche | Description | Statut |
 |---|-------|-------------|--------|
-| 3.0.12 | Tests visuels | Comparaison côte-à-côte avec mockups | [ ] |
-| 3.0.13 | Tests responsive | Mobile, tablet, desktop | [ ] |
+| 3.0.12 | Tests visuels | Comparaison côte-à-côte avec mockups | ✅ |
+| 3.0.13 | Tests responsive | Mobile, tablet, desktop | ✅ |
 
 ---
 
@@ -439,7 +439,7 @@ npm install @google/generative-ai
 
 **Objectif** : Finaliser, tester, sécuriser et déployer l'application.
 
-#### Semaine 3 - Jour 1-2 : Tests & Qualité
+#### Sprint 3 - Step 1-2 : Tests & Qualité
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -465,7 +465,7 @@ npm install @google/generative-ai
 - **Commande** :
   - `cd backend && npm test` (Jest en mode ESM)
 
-#### Semaine 3 - Jour 3 : Sécurité & Performance
+#### Sprint 3 - Step 3 : Sécurité & Performance
 
 > **Explications des concepts de sécurité :**
 > - **CSRF (Cross-Site Request Forgery)** : Attaque où un site malveillant envoie des requêtes au nom d'un utilisateur connecté. Protection : vérifier l'origine des requêtes.
@@ -482,7 +482,7 @@ npm install @google/generative-ai
 | 3.14 | Tester scénarios de sécurité | Manual testing | Tentatives d'injection, accès non autorisé | ✅ |
 | 3.15 | Commit sécurité | `git commit -m "security: add input validation and secure cookies"` | | ✅ |
 
-#### Semaine 3 - Jour 4 : SEO & Accessibilité (Simplifié)
+#### Sprint 3 - Step 4 : SEO & Accessibilité (Simplifié)
 
 > **SEO Essentiel** : Les éléments ci-dessous sont les plus importants pour le référencement. Les items avancés (sitemap, robots.txt, Schema.org) sont optionnels pour le MVP.
 
@@ -501,7 +501,7 @@ npm install @google/generative-ai
 - `sitemap.xml` : Liste de toutes les pages pour Google
 - Open Graph : Balises pour un bel affichage lors du partage sur les réseaux sociaux
 
-#### Semaine 3 - Jour 5 : RGPD & Mentions Légales
+#### Sprint 3 - Step 5 : RGPD & Mentions Légales
 
 | # | Tâche | Fichier | Description |
 |---|-------|---------|-------------|
@@ -513,25 +513,25 @@ npm install @google/generative-ai
 | 3.33 | Tester conformité RGPD | Checklist | Toutes obligations | ✅ |
 | 3.34 | Commit RGPD | `git commit -m "feat(legal): add GDPR compliance pages"` | | ✅ |
 
-#### Semaine 3 - Jours 6-7 : CI/CD & Déploiement Azure
+#### Sprint 3 - Steps 6-7 : CI/CD & Déploiement Azure (Container Apps)
 
 | # | Tâche | Action | Description |
 |---|-------|--------|-------------|
 | 3.35 | Créer workflow GitHub Actions | `.github/workflows/ci.yml` | Tests automatiques sur PR | ✅ |
 | 3.36 | Créer workflow deploy | `.github/workflows/deploy.yml` | Build + deploy sur merge main | ✅ |
-| 3.37 | Créer compte Azure | portal.azure.com | Crédits étudiants | 🔄 |
-| 3.38 | Créer Resource Group | Azure Portal | `rg-cinedelices` | 🔄 |
-| 3.39 | Créer Azure App Service | Azure Portal | Plan gratuit F1 (staging) | 🔄 |
-| 3.40 | Créer PostgreSQL Flexible | Azure Portal | Burstable B1ms | 🔄 |
-| 3.41 | Configurer variables d'env | App Service → Configuration | DATABASE_URL, secrets | 🔄 |
-| 3.42 | Obtenir publish profile | App Service → Download | Pour GitHub Actions | 🔄 |
-| 3.43 | Ajouter secrets GitHub | Settings → Secrets | AZURE_WEBAPP_PUBLISH_PROFILE | 🔄 |
-| 3.44 | Tester deploy staging | Push vers main | Vérifier déploiement auto | 🔄 |
-| 3.45 | Tester l'application déployée | URL Azure | Test complet | 🔄 |
-| 3.46 | Configurer domaine custom | Azure DNS (optionnel) | Nom de domaine | 🔄 |
-| 3.47 | Activer HTTPS | App Service → TLS/SSL | Certificat gratuit Azure | 🔄 |
+| 3.37 | Créer compte Azure | portal.azure.com | Crédits étudiants | ✅ |
+| 3.38 | Créer Resource Group | Azure Portal | `oclock-resources` | ✅ |
+| 3.39 | Créer Azure Container Apps | Azure Portal | Frontend + Backend | ✅ |
+| 3.40 | Créer PostgreSQL Flexible | Azure Portal | Burstable B1ms | ✅ |
+| 3.41 | Configurer variables d'env | Container App → Containers | DATABASE_URL, secrets | ✅ |
+| 3.42 | Configurer ACR | Azure Portal | Registry images | ✅ |
+| 3.43 | Ajouter secrets GitHub | Settings → Secrets | AZURE_CREDENTIALS + ACR creds | ✅ |
+| 3.44 | Tester deploy staging | Push vers main | Vérifier déploiement auto | ✅ |
+| 3.45 | Tester l'application déployée | URL Azure | Test complet | ✅ |
+| 3.46 | Configurer domaine custom | Azure DNS (optionnel) | Nom de domaine | ✅ |
+| 3.47 | Activer HTTPS | Azure Container Apps | TLS géré | ✅ |
 | 3.48 | Commit CI/CD | `git commit -m "ci: add GitHub Actions deployment workflow"` | | ✅ |
-| 3.49 | Merge final vers main | PR review + merge | Déploiement production | 🔄 |
+| 3.49 | Merge final vers main | PR review + merge | Déploiement production | ✅ |
 | 3.50 | **LIVRABLE SPRINT 3** | Application déployée en production | ✅ Site accessible en ligne |
 
 ---
@@ -553,7 +553,7 @@ npm install @google/generative-ai
 SPRINT 0 (Conception)     : ████████████████████ TERMINÉ
 SPRINT 1 (Setup)          : ████████████████████ TERMINÉ
 SPRINT 2 (Fonctionnalités): ████████████████████ TERMINÉ (Refactor SPA Inclus)
-SPRINT 3 (Finitions)      : ░░░░░░░░░░░░░░░░░░░░ EN COURS (Verification & Deployment)
+SPRINT 3 (Finitions)      : ████████████████████ TERMINÉ (Verification & Deployment)
 
 Total estimé: ~4 semaines de développement
 ```
@@ -1297,9 +1297,41 @@ erDiagram
 - [x] Frontend UI (Search Page, Choice Page)
 - [x] Auth Protection
 - [x] Auto-fill & Media Auto-creation
-- [ ] AI Generation (Placeholder "Coming Soon")
+- [x] AI Generation (Mistral)
 
 ---
 
-*Document mis à jour le : 19 janvier 2026*
-*Version : 1.1.0*
+## 🤖 Feature Tracking: AI Recipe Generation (Mistral)
+
+**Implémenté en :** Janvier 2026 (Sprint 3)
+
+### Objectifs
+- Permettre à un utilisateur connecté de générer une recette à partir d'un film/série.
+- Pré-remplir automatiquement le formulaire de création de recette.
+- Garder la création manuelle disponible (choix AI vs manuel).
+
+### Architecture Technique
+- **Backend** :
+  - `mistralService.js` : Appel API Mistral pour générer la recette.
+  - `recipeRoutes.js` : Endpoint `POST /api/v1/recipes/generate`.
+  - `recipeController.js` : `generateRecipe()` valide la requête et renvoie le JSON recette.
+- **Frontend** :
+  - `RecipeNew.svelte` : Ajout d'un sélecteur film/série + boutons "Write a Recipe" et "Generate Recipe with AI".
+  - `api.generateRecipe()` : Appel vers l'endpoint backend.
+
+### Variables d'environnement
+```env
+MISTRAL_API_KEY=your-mistral-api-key
+MISTRAL_MODEL=mistral-small-latest
+MISTRAL_API_URL=https://api.mistral.ai/v1/chat/completions
+```
+
+### Statut
+- [x] Génération AI via Mistral
+- [x] Pré-remplissage du formulaire
+- [x] Flux manuel conservé
+
+---
+
+*Document mis à jour le : 26 janvier 2026*
+*Version : 1.2.0*
