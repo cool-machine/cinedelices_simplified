@@ -452,6 +452,19 @@ npm install @google/generative-ai
 | 3.7 | Exécuter linting complet | `npm run lint:fix` | Code propre | ✅ |
 | 3.8 | Commit tests | `git commit -m "test: add unit and integration tests"` | | ✅ |
 
+**Tests actuels (Sprint 3 - Update Jan 2026)** :
+
+- **Placement** : `backend/tests/`
+  - **Unit tests** : `backend/tests/unit/`
+  - **Integration tests** : `backend/tests/integration/`
+- **Unit tests ajoutés** :
+  - `backend/tests/unit/jwt.test.js` : vérifie la génération/validation d'un JWT.
+  - `backend/tests/unit/recipeController.test.js` : vérifie les réponses 404 et la structure des includes pour `getAllRecipes`.
+- **Integration test ajouté** :
+  - `backend/tests/integration/tmdbRoutes.test.js` : teste les endpoints `/api/v1/tmdb/search` et `/api/v1/tmdb/:id` avec `supertest`, en mockant le service TMDB.
+- **Commande** :
+  - `cd backend && npm test` (Jest en mode ESM)
+
 #### Semaine 3 - Jour 3 : Sécurité & Performance
 
 > **Explications des concepts de sécurité :**
@@ -1187,8 +1200,8 @@ erDiagram
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "db:migrate": "sequelize db:migrate",
