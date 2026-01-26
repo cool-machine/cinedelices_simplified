@@ -32,6 +32,7 @@ export const api = {
     getRecipes: () => request('/recipes'),
     getRecipe: (id) => request(`/recipes/${id}`),
     createRecipe: (data) => request('/recipes', { method: 'POST', body: JSON.stringify(data) }),
+    generateRecipe: (movie) => request('/recipes/generate', { method: 'POST', body: JSON.stringify({ movie }) }),
     updateRecipe: (id, data) => request(`/recipes/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
     deleteRecipe: (id) => request(`/recipes/${id}`, { method: 'DELETE' }),
 

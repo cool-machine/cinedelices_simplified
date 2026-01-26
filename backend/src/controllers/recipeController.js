@@ -1,4 +1,5 @@
 import db from '../models/index.js';
+import { generateRecipeFromMovie } from '../services/mistralService.js';
 
 const { Recipe, User, Category, Media } = db;
 
@@ -81,6 +82,20 @@ export const deleteRecipe = async (req, res) => {
 
         await recipe.destroy();
         res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const generateRecipe = async (req, res) => {
+    try {
+        const { movie } = req.body;
+        if (!movie?.title) {
+            return res.status(400).json({ message: 'Movie title is required' });
+        }
+
+        const recipe = await generateRecipeFromMovie(movie);
+        res.status(200).json(recipe);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

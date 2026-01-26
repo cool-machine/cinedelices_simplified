@@ -698,8 +698,5 @@
             display: none;
         }
 
-        .carousel-track {
-            overflow-x: auto;
-        }
     }
 </style>

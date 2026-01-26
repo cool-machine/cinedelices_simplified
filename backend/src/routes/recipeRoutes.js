@@ -9,6 +9,7 @@ const router = Router();
 // Recipe CRUD
 router.get('/', recipeController.getAllRecipes);
 router.get('/:id', recipeController.getRecipeById);
+router.post('/generate', isAuthenticated, recipeController.generateRecipe);
 router.post('/', isAuthenticated, createRecipeSchema, validate, recipeController.createRecipe);
 router.put('/:id', isAuthenticated, updateRecipeSchema, validate, recipeController.updateRecipe);
 router.delete('/:id', isAuthenticated, recipeController.deleteRecipe);

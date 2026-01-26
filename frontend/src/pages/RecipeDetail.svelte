@@ -496,7 +496,6 @@
         gap: 0.75rem;
     }
 
-    .favorite-btn,
     .edit-btn,
     .delete-btn {
         padding: 0.6rem 1rem;
@@ -509,17 +508,6 @@
         transition: all 0.3s;
     }
 
-    .favorite-btn {
-        background: transparent;
-        color: var(--or-cinema);
-    }
-
-    .favorite-btn.active {
-        background: var(--rouge-rideau);
-        border-color: var(--rouge-rideau);
-        color: white;
-    }
-
     .edit-btn {
         background: var(--or-cinema);
         color: var(--noir-pur);
@@ -529,27 +517,6 @@
         background: var(--rouge-rideau);
         color: white;
         border-color: var(--rouge-rideau);
-    }
-
-    .rating {
-        display: flex;
-        justify-content: center;
-        gap: 0.25rem;
-    }
-
-    .star {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: #444;
-        cursor: pointer;
-        padding: 0;
-        transition: color 0.2s;
-    }
-
-    .star.active,
-    .star:hover {
-        color: var(--or-cinema);
     }
 
     /* Instructions Section */
@@ -599,118 +566,6 @@
         line-height: 1.6;
     }
 
-    /* Comments Section */
-    .comments-section {
-        max-width: 1200px;
-        margin: 2rem auto;
-        padding: 0 2rem 2rem;
-    }
-
-    .comments-section h2 {
-        font-family: var(--font-title);
-        color: var(--or-cinema);
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .comment-avatars {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .comment-avatar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .avatar-initial {
-        width: 50px;
-        height: 50px;
-        background: var(--rouge-rideau);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 600;
-        border: 2px solid var(--or-cinema);
-    }
-
-    .avatar-rating {
-        color: var(--or-cinema);
-        font-size: 0.75rem;
-    }
-
-    .review-form {
-        margin-bottom: 1.5rem;
-    }
-
-    .review-form textarea {
-        width: 100%;
-        padding: 1rem;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-radius: 8px;
-        background: rgba(26, 26, 26, 0.8);
-        color: var(--blanc-casse);
-        resize: vertical;
-        margin-bottom: 0.5rem;
-    }
-
-    .btn-submit {
-        background: var(--or-cinema);
-        color: var(--noir-pur);
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 4px;
-        cursor: pointer;
-        font-family: var(--font-title);
-        text-transform: uppercase;
-    }
-
-    .login-prompt {
-        color: #888;
-        margin-bottom: 1.5rem;
-    }
-
-    .login-prompt a {
-        color: var(--or-cinema);
-    }
-
-    .review {
-        padding: 1rem;
-        background: rgba(26, 26, 26, 0.5);
-        border-radius: 8px;
-        margin-bottom: 1rem;
-    }
-
-    .review-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-    }
-
-    .review-header strong {
-        color: var(--or-cinema);
-    }
-
-    .date {
-        color: #666;
-        font-size: 0.85rem;
-    }
-
-    .review p {
-        color: #ccc;
-    }
-
-    .no-reviews {
-        color: #666;
-        text-align: center;
-        padding: 2rem;
-    }
 
     .loading,
     .error {

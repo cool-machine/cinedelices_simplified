@@ -51,7 +51,8 @@
         editingId = null;
     }
 
-    async function handleSubmit() {
+    async function handleSubmit(event) {
+        event?.preventDefault?.();
         if (!formData.title.trim()) return;
         
         try {
@@ -87,7 +88,7 @@
     <div class="page-header">
         <h1>🎬 Media Management</h1>
         <div class="header-actions">
-            <button class="add-btn" on:click={startCreate}>+ New Media</button>
+            <button class="add-btn" onclick={startCreate}>+ New Media</button>
             <a href="/admin" use:link class="back-btn">← Back</a>
         </div>
     </div>
@@ -95,15 +96,15 @@
     {#if showForm}
         <div class="form-card">
             <h3>{editingId ? 'Edit' : 'New'} Media</h3>
-            <form on:submit|preventDefault={handleSubmit}>
+            <form onsubmit={handleSubmit}>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Title</label>
-                        <input type="text" bind:value={formData.title} required />
+                        <label for="media-title">Title</label>
+                        <input id="media-title" type="text" bind:value={formData.title} required />
                     </div>
                     <div class="form-group">
-                        <label>Type</label>
-                        <select bind:value={formData.type}>
+                        <label for="media-type">Type</label>
+                        <select id="media-type" bind:value={formData.type}>
                             <option value="film">Movie</option>
                             <option value="serie">TV Show</option>
                         </select>
@@ -111,16 +112,27 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Release Year</label>
-                        <input type="number" bind:value={formData.release_year} min="1900" max="2100" />
+                        <label for="media-release-year">Release Year</label>
+                        <input
+                            id="media-release-year"
+                            type="number"
+                            bind:value={formData.release_year}
+                            min="1900"
+                            max="2100"
+                        />
                     </div>
                     <div class="form-group">
-                        <label>Poster URL</label>
-                        <input type="url" bind:value={formData.poster_url} placeholder="https://..." />
+                        <label for="media-poster-url">Poster URL</label>
+                        <input
+                            id="media-poster-url"
+                            type="url"
+                            bind:value={formData.poster_url}
+                            placeholder="https://..."
+                        />
                     </div>
                 </div>
                 <div class="form-actions">
-                    <button type="button" class="cancel" on:click={cancelForm}>Cancel</button>
+                    <button type="button" class="cancel" onclick={cancelForm}>Cancel</button>
                     <button type="submit">{editingId ? 'Save' : 'Create'}</button>
                 </div>
             </form>
@@ -151,8 +163,8 @@
                             <td><span class="type-badge {m.type}">{m.type}</span></td>
                             <td>{m.release_year || '-'}</td>
                             <td class="actions">
-                                <button class="edit-btn" on:click={() => startEdit(m)}>✏️</button>
-                                <button class="delete-btn" on:click={() => deleteMedia(m.id)}>🗑️</button>
+                                <button class="edit-btn" onclick={() => startEdit(m)}>✏️</button>
+                                <button class="delete-btn" onclick={() => deleteMedia(m.id)}>🗑️</button>
                             </td>
                         </tr>
                     {:else}

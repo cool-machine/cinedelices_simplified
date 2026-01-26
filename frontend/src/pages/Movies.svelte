@@ -63,6 +63,7 @@
                 movie_poster: movie.poster_url || "",
                 movie_year: movie.year || "",
                 movie_type: movie.type || "film",
+                movie_overview: movie.overview || "",
             });
             push(`/login?${params.toString()}`);
         } else {
@@ -73,6 +74,7 @@
                 movie_poster: movie.poster_url || "",
                 movie_year: movie.year || "",
                 movie_type: movie.type || "film",
+                movie_overview: movie.overview || "",
             });
             push(`/recipes/new?${params.toString()}`);
         }
@@ -95,7 +97,6 @@
                     bind:value={searchQuery}
                     oninput={handleInput}
                     placeholder="Start typing to search..."
-                    autofocus
                 />
                 {#if loading}
                     <span class="search-spinner"></span>
@@ -239,18 +240,6 @@
         border-color: var(--or-cinema);
     }
 
-    .search-box button {
-        padding: 1rem 2rem;
-        background: var(--rouge-rideau);
-        color: var(--or-cinema);
-        border: 2px solid var(--or-cinema);
-        border-radius: 8px;
-        font-family: var(--font-title);
-        font-size: 1rem;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
     .search-spinner {
         position: absolute;
         right: 15px;
@@ -292,39 +281,10 @@
         margin-bottom: 1.5rem;
     }
 
-    .loading {
-        text-align: center;
-        padding: 3rem;
-        color: #999;
-    }
-
-    .spinner {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border: 2px solid #444;
-        border-top-color: var(--or-cinema);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-right: 0.5rem;
-    }
-
     @keyframes spin {
         to {
             transform: rotate(360deg);
         }
-    }
-
-    .no-results {
-        text-align: center;
-        padding: 3rem;
-        color: #888;
-    }
-
-    .no-results .hint {
-        font-size: 0.9rem;
-        color: #666;
-        margin-top: 0.5rem;
     }
 
     .movies-grid {
