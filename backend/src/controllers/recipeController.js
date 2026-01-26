@@ -94,9 +94,11 @@ export const generateRecipe = async (req, res) => {
             return res.status(400).json({ message: 'Movie title is required' });
         }
 
+        console.log(`[AI] Generate recipe for: ${movie.title}`);
         const recipe = await generateRecipeFromMovie(movie);
         res.status(200).json(recipe);
     } catch (error) {
+        console.error('[AI] Recipe generation failed:', error);
         res.status(500).json({ error: error.message });
     }
 };

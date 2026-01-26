@@ -68,6 +68,7 @@ export async function generateRecipeFromMovie(movie) {
 
     if (!response.ok) {
         const errorText = await response.text();
+        console.error('[AI] Mistral API error response:', response.status, errorText);
         throw new Error(`Mistral API error: ${response.status} ${errorText}`);
     }
 
