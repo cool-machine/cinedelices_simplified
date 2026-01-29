@@ -76,6 +76,11 @@ Backend:
 
 Guide complet dans [docs/azure-deployment-guide.md](docs/azure-deployment-guide.md).
 
+## 🔀 Conventions de commit (GitHub)
+
+Format court (Conventional Commits) : `type(scope): description`
+- Exemples : `feat(recipes): add filters`, `fix(auth): handle invalid token`, `docs: update readme`.
+
 ## ❌ Non implémenté (à vérifier)
 
 - WCAG/accessibilité.
