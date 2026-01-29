@@ -7,6 +7,7 @@ SPA Svelte (frontend) + API REST Express (backend) + PostgreSQL/Sequelize. Auth 
 ### Sprint 0 — Conception
 - Exigences cadrées depuis [docs/requirements/CinéDélices.md](docs/requirements/CinéDélices.md).
 - MCD, MLD, MPD définis.
+- **Documentation Visuelle** : voir [docs/mockup.md](docs/mockup.md) pour les maquettes, wireframes et l'enregistrement vidéo du site.
 
 ### Sprint 1 — Mise en Place (Setup Technique)
 - Backend Express opérationnel + routage principal (entry [backend/server.js](backend/server.js), app [backend/src/app.js](backend/src/app.js), router [backend/src/routes/index.js](backend/src/routes/index.js)).
@@ -75,6 +76,13 @@ Backend:
 ## 📦 Déploiement Azure
 
 Guide complet dans [docs/azure-deployment-guide.md](docs/azure-deployment-guide.md).
+
+## 📸 Documentation Visuelle
+
+L'ensemble des ressources visuelles (captures d'écran, wireframes, enregistrement vidéo) est centralisé dans [docs/mockup.md](docs/mockup.md).
+
+- **Enregistrement vidéo** : [docs/site_recording.webp](docs/site_recording.webp)
+- **Maquettes & Wireframes** : disponibles pour l'accueil, les détails de recette et l'inscription.
 
 ## 🔀 Conventions de commit (GitHub)
 
