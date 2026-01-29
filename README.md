@@ -1,96 +1,236 @@
 # Ciné Délices
 
-SPA Svelte (frontend) + API REST Express (backend) + PostgreSQL/Sequelize. Auth JWT en cookie httpOnly (compatible Bearer). Back‑office admin côté frontend et endpoints d’administration côté backend. Intégrations TMDB + génération de recette via **Mistral** (pas Gemini).
+A recipe-sharing platform inspired by movies and TV shows. Built with Svelte (frontend) + Express REST API (backend) + PostgreSQL/Sequelize. Features JWT authentication via httpOnly cookies (with Bearer token support), admin back-office, TMDB integration for movie data, and AI-powered recipe generation via **Mistral**.
 
-## 🏃 Sprints (réalisés)
+## Live Demo
 
-### Sprint 0 — Conception
-- Exigences cadrées depuis [docs/requirements/CinéDélices.md](docs/requirements/CinéDélices.md).
-- MCD, MLD, MPD définis.
-- **Documentation Visuelle** : voir [docs/mockup.md](docs/mockup.md) pour les maquettes, wireframes et l'enregistrement vidéo du site.
+**Production URL:** https://cinedelices-frontend.calmglacier-7bdfaf80.canadacentral.azurecontainerapps.io
 
-### Sprint 1 — Mise en Place (Setup Technique)
-- Backend Express opérationnel + routage principal (entry [backend/server.js](backend/server.js), app [backend/src/app.js](backend/src/app.js), router [backend/src/routes/index.js](backend/src/routes/index.js)).
-- Modèles Sequelize + migrations/seeders (models [backend/src/models](backend/src/models), migrations [backend/src/migrations](backend/src/migrations), seeders [backend/src/seeders](backend/src/seeders)).
-- Frontend SPA Svelte initialisé + routing (bootstrap [frontend/src/main.js](frontend/src/main.js), app [frontend/src/App.svelte](frontend/src/App.svelte), routes [frontend/src/routes.js](frontend/src/routes.js)).
-- Docker dev/prod en place ([docker-compose.dev.yml](docker-compose.dev.yml), [docker-compose.yml](docker-compose.yml), backend [backend/Dockerfile](backend/Dockerfile), frontend [frontend/Dockerfile](frontend/Dockerfile)).
+## Features
 
-### Sprint 2 — Développement des Fonctionnalités MVP
-- Auth JWT + profils (controllers [backend/src/controllers/authController.js](backend/src/controllers/authController.js), middleware [backend/src/middlewares/auth.js](backend/src/middlewares/auth.js), pages [frontend/src/pages/Login.svelte](frontend/src/pages/Login.svelte), [frontend/src/pages/Register.svelte](frontend/src/pages/Register.svelte), [frontend/src/pages/Profile.svelte](frontend/src/pages/Profile.svelte), [frontend/src/pages/ProfileEdit.svelte](frontend/src/pages/ProfileEdit.svelte)).
-- CRUD recettes + ownership (backend [backend/src/controllers/recipeController.js](backend/src/controllers/recipeController.js), routes [backend/src/routes/recipeRoutes.js](backend/src/routes/recipeRoutes.js), frontend [frontend/src/pages/Recipes.svelte](frontend/src/pages/Recipes.svelte), [frontend/src/pages/RecipeNew.svelte](frontend/src/pages/RecipeNew.svelte), [frontend/src/pages/RecipeEdit.svelte](frontend/src/pages/RecipeEdit.svelte), [frontend/src/pages/RecipeDetail.svelte](frontend/src/pages/RecipeDetail.svelte)).
-- Back‑office admin (API + UI) (routes [backend/src/routes/adminRoutes.js](backend/src/routes/adminRoutes.js), pages [frontend/src/pages/admin/Dashboard.svelte](frontend/src/pages/admin/Dashboard.svelte), [frontend/src/pages/admin/Recipes.svelte](frontend/src/pages/admin/Recipes.svelte), [frontend/src/pages/admin/Categories.svelte](frontend/src/pages/admin/Categories.svelte), [frontend/src/pages/admin/Media.svelte](frontend/src/pages/admin/Media.svelte), [frontend/src/pages/admin/Users.svelte](frontend/src/pages/admin/Users.svelte)).
-- Métadonnées catégories/médias (backend [backend/src/controllers/metadataController.js](backend/src/controllers/metadataController.js), routes [backend/src/routes/index.js](backend/src/routes/index.js)).
+- **User Authentication** - Register, login, profile management with JWT tokens
+- **Recipe Management** - Create, edit, delete recipes with ownership control
+- **Movie Integration** - Browse movies/TV shows via TMDB API and link recipes to them
+- **AI Recipe Generation** - Generate recipe ideas using Mistral AI based on selected movies
+- **Admin Back-Office** - Manage users, recipes, categories, and media
+- **Responsive Design** - Mobile-friendly UI
 
-### Sprint 3 — Finitions, Tests & Intégrations
-- Intégration TMDB (service [backend/src/services/tmdbService.js](backend/src/services/tmdbService.js), routes [backend/src/routes/tmdbRoutes.js](backend/src/routes/tmdbRoutes.js), page [frontend/src/pages/Movies.svelte](frontend/src/pages/Movies.svelte)).
-- Génération de recette via Mistral (service [backend/src/services/mistralService.js](backend/src/services/mistralService.js), endpoint [backend/src/routes/recipeRoutes.js](backend/src/routes/recipeRoutes.js), UI [frontend/src/pages/RecipeNew.svelte](frontend/src/pages/RecipeNew.svelte)).
-- Tests unitaires & intégration (tests [backend/tests](backend/tests), config [backend/jest.config.js](backend/jest.config.js)).
-- Ops API: healthcheck + 404 propre (app [backend/src/app.js](backend/src/app.js#L66-L75)).
-
-## 🧱 Stack technique réelle
+## Tech Stack
 
 ### Frontend
-- Svelte 5 + Vite (bootstrap [frontend/src/main.js](frontend/src/main.js#L1-L9), root [frontend/src/App.svelte](frontend/src/App.svelte))
-- Router SPA: svelte-spa-router (routes [frontend/src/routes.js](frontend/src/routes.js), usage [frontend/src/App.svelte](frontend/src/App.svelte#L1-L21))
+- **Svelte 5** + **Vite** - Modern reactive UI framework
+- **svelte-spa-router** - Client-side routing
+- **Responsive CSS** - Mobile-first design
 
 ### Backend
-- Node.js 20 + Express 5 (entry [backend/server.js](backend/server.js), app [backend/src/app.js](backend/src/app.js#L1-L120))
-- Sequelize + PostgreSQL (models [backend/src/models](backend/src/models), config [backend/src/config/config.js](backend/src/config/config.js))
-- Auth: JWT (cookie httpOnly + Bearer) (utils [backend/src/utils/jwt.js](backend/src/utils/jwt.js), auth flow [backend/src/controllers/authController.js](backend/src/controllers/authController.js), middleware [backend/src/middlewares/auth.js](backend/src/middlewares/auth.js))
-- Sécurité: Helmet, rate limiting, CORS, cookie-parser (middlewares [backend/src/app.js](backend/src/app.js#L1-L90))
-- Validation: express-validator (schemas [backend/src/validations/recipeSchema.js](backend/src/validations/recipeSchema.js), routes [backend/src/routes/authRoutes.js](backend/src/routes/authRoutes.js))
+- **Node.js 20** + **Express 5** - REST API server
+- **Sequelize** + **PostgreSQL** - ORM and database
+- **JWT Authentication** - httpOnly cookies + Bearer token support
+- **Security** - Helmet, rate limiting, CORS, input validation
 
-### Tooling
-- Tests: Jest + Supertest (tests [backend/tests](backend/tests), config [backend/jest.config.js](backend/jest.config.js))
-- Lint: ESLint (config [backend/eslint.config.js](backend/eslint.config.js))
-- Docker: docker-compose (dev + prod) ([docker-compose.dev.yml](docker-compose.dev.yml), [docker-compose.yml](docker-compose.yml))
+### Infrastructure
+- **Docker** - Containerized deployment
+- **Azure Container Apps** - Production hosting
+- **Azure Container Registry** - Docker image storage
+- **Azure Database for PostgreSQL** - Managed database
+- **GitHub Actions** - CI/CD pipeline
 
-## ✅ Fonctionnalités implémentées
+## Quick Start (Local Development)
 
-- Auth & profils, recettes, back‑office, TMDB, IA Mistral (détails dans [docs/dev-notes.md](docs/dev-notes.md)).
+### Prerequisites
+- Node.js 20+
+- Docker & Docker Compose
+- PostgreSQL (or use Docker)
 
-## 🧪 Tests existants
+### 1. Clone and Setup
 
-- Unit: JWT utils, recipeController
-- Integration: TMDB routes
+```bash
+git clone https://github.com/cool-machine/cinedelices_simplified.git
+cd cinedelices_simplified
+```
 
-## 🔧 Variables d’environnement utilisées
+### 2. Environment Variables
 
-Backend:
-- DATABASE_URL
-- SESSION_SECRET (clé JWT)
-- FRONTEND_URL (CORS)
-- RATE_LIMIT_MAX, RATE_LIMIT_AUTH_MAX
-- TMDB_API_KEY
-- MISTRAL_API_KEY
-- MISTRAL_API_URL (optionnel)
-- MISTRAL_MODEL (optionnel)
+Copy the example env file and configure:
 
-## 🐳 Docker
+```bash
+cp .env.example .env
+```
 
-- docker-compose.dev.yml: backend + frontend + db (hot reload)
-- docker-compose.yml: backend + db (prod)
-- Dockerfile frontend: build Vite + nginx
-- Dockerfile backend: build Node + healthcheck
+Required variables:
+```env
+# Database
+DATABASE_URL=postgres://user:password@localhost:5433/cinedelices
+DB_HOST=localhost
+DB_PORT=5433
+DB_NAME=cinedelices
+DB_USER=user
+DB_PASSWORD=password
 
-## 📦 Déploiement Azure
+# Auth
+JWT_SECRET=your-secret-key
 
-Guide complet dans [docs/azure-deployment-guide.md](docs/azure-deployment-guide.md).
+# Frontend URL (for CORS)
+FRONTEND_URL=http://localhost:5173
 
-## 📸 Documentation Visuelle
+# TMDB API
+TMDB_API_KEY=your-tmdb-api-key
 
-L'ensemble des ressources visuelles (captures d'écran, wireframes, enregistrement vidéo) est centralisé dans [docs/mockup.md](docs/mockup.md).
+# Mistral AI (optional, for recipe generation)
+MISTRAL_API_KEY=your-mistral-api-key
+MISTRAL_MODEL=mistral-small-latest
+MISTRAL_API_URL=https://api.mistral.ai/v1/chat/completions
+```
 
-- **Enregistrement vidéo** : [docs/site_recording.webp](docs/site_recording.webp)
-- **Maquettes & Wireframes** : disponibles pour l'accueil, les détails de recette et l'inscription.
+### 3. Start with Docker Compose
 
-## 🔀 Conventions de commit (GitHub)
+```bash
+# Start all services (database, backend, frontend)
+docker-compose -f docker-compose.dev.yml up
+```
 
-Format court (Conventional Commits) : `type(scope): description`
-- Exemples : `feat(recipes): add filters`, `fix(auth): handle invalid token`, `docs: update readme`.
+Or run services individually:
 
-## ❌ Non implémenté (à vérifier)
+```bash
+# Start database only
+docker-compose -f docker-compose.dev.yml up db
 
-- WCAG/accessibilité.
-- SEO (checklist, sitemap/robots).
-- CI/CD automatisé.
+# Backend (in another terminal)
+cd backend
+npm install
+npm run dev
+
+# Frontend (in another terminal)
+cd frontend
+npm install
+npm run dev
+```
+
+### 4. Initialize Database
+
+```bash
+cd backend
+npm run db:migrate
+npm run db:seed
+```
+
+**Reset database if needed:**
+```bash
+npm run db:reset
+```
+
+## Project Structure
+
+```
+cinedelices_simplified/
+├── backend/
+│   ├── src/
+│   │   ├── controllers/    # Route handlers
+│   │   ├── middlewares/    # Auth, validation
+│   │   ├── models/         # Sequelize models
+│   │   ├── routes/         # API routes
+│   │   ├── services/       # TMDB, Mistral integrations
+│   │   └── utils/          # JWT, helpers
+│   ├── tests/              # Jest tests
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Route pages
+│   │   ├── lib/            # API client, stores
+│   │   └── assets/         # Images, styles
+│   └── Dockerfile
+├── docs/                   # Documentation
+└── .github/workflows/      # CI/CD
+```
+
+## API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/register` - Register new user
+- `POST /api/v1/auth/login` - Login
+- `POST /api/v1/auth/logout` - Logout
+- `GET /api/v1/auth/me` - Get current user
+
+### Recipes
+- `GET /api/v1/recipes` - List all recipes
+- `GET /api/v1/recipes/:id` - Get recipe details
+- `POST /api/v1/recipes` - Create recipe (auth required)
+- `PUT /api/v1/recipes/:id` - Update recipe (owner only)
+- `DELETE /api/v1/recipes/:id` - Delete recipe (owner only)
+- `POST /api/v1/recipes/generate` - AI recipe generation (auth required)
+
+### Movies (TMDB)
+- `GET /api/v1/tmdb/search?query=...&type=...` - Search movies/TV shows
+- `GET /api/v1/tmdb/:id?type=...` - Get movie/TV show details
+
+### Admin
+- `GET /api/v1/admin/users` - List users (admin only)
+- `DELETE /api/v1/admin/users/:id` - Delete user (admin only)
+- ... (categories, media management)
+
+## Testing
+
+```bash
+cd backend
+npm test           # Run all tests
+npm run test:watch # Watch mode
+```
+
+Tests use **Jest** + **Supertest** with ESM modules support.
+
+## Deployment
+
+### Azure Container Apps (Production)
+
+The app is deployed on Azure with:
+- **Azure Container Apps** - Frontend and backend containers
+- **Azure Container Registry** - Docker images
+- **Azure Database for PostgreSQL** - Managed database
+- **GitHub Actions** - Automated CI/CD on push to main
+
+#### Scaling Configuration
+
+To eliminate cold starts, set minimum replicas:
+
+```bash
+# Keep at least 1 replica running (no cold starts)
+az containerapp update --name cinedelices-backend --resource-group oclock-resources --min-replicas 1
+az containerapp update --name cinedelices-frontend --resource-group oclock-resources --min-replicas 1
+
+# Scale to zero when not needed (cost savings)
+az containerapp update --name cinedelices-backend --resource-group oclock-resources --min-replicas 0
+az containerapp update --name cinedelices-frontend --resource-group oclock-resources --min-replicas 0
+```
+
+### Manual Deployment
+
+See [docs/azure-deployment-guide.md](docs/azure-deployment-guide.md) for step-by-step Azure setup.
+
+## CI/CD
+
+GitHub Actions workflow (`.github/workflows/azure-deploy.yml`) automatically:
+1. Builds Docker images for frontend and backend
+2. Pushes to Azure Container Registry
+3. Deploys to Azure Container Apps
+
+Triggered on push to `main` branch.
+
+## Documentation
+
+- [Development Notes](docs/dev-notes.md) - Sprint progress and technical decisions
+- [Azure Deployment Guide](docs/azure-deployment-guide.md) - Cloud setup instructions
+- [Visual Documentation](docs/mockup.md) - Screenshots, wireframes, demo video
+
+## Default Accounts (Development)
+
+After seeding the database:
+
+| Role  | Email            | Password    |
+|-------|------------------|-------------|
+| Admin | admin@test.com   | Password123 |
+| User  | user@test.com    | Password123 |
+
+## License
+
+MIT
