@@ -10,6 +10,28 @@ SPA Svelte (frontend) + API REST Express (backend) + PostgreSQL/Sequelize. Auth 
 
 ---
 
+## 🏃 Sprints (réalisés)
+
+### Sprint 1 — Mise en Place (Setup Technique)
+- Backend Express opérationnel + routage principal (entry [backend/server.js](backend/server.js), app [backend/src/app.js](backend/src/app.js), router [backend/src/routes/index.js](backend/src/routes/index.js)).
+- Modèles Sequelize + migrations/seeders (models [backend/src/models](backend/src/models), migrations [backend/src/migrations](backend/src/migrations), seeders [backend/src/seeders](backend/src/seeders)).
+- Frontend SPA Svelte initialisé + routing (bootstrap [frontend/src/main.js](frontend/src/main.js), app [frontend/src/App.svelte](frontend/src/App.svelte), routes [frontend/src/routes.js](frontend/src/routes.js)).
+- Docker dev/prod en place ([docker-compose.dev.yml](docker-compose.dev.yml), [docker-compose.yml](docker-compose.yml), backend [backend/Dockerfile](backend/Dockerfile), frontend [frontend/Dockerfile](frontend/Dockerfile)).
+
+### Sprint 2 — Développement des Fonctionnalités MVP
+- Authentification JWT + profils (controllers [backend/src/controllers/authController.js](backend/src/controllers/authController.js), middleware [backend/src/middlewares/auth.js](backend/src/middlewares/auth.js), pages [frontend/src/pages/Login.svelte](frontend/src/pages/Login.svelte), [frontend/src/pages/Register.svelte](frontend/src/pages/Register.svelte), [frontend/src/pages/Profile.svelte](frontend/src/pages/Profile.svelte), [frontend/src/pages/ProfileEdit.svelte](frontend/src/pages/ProfileEdit.svelte)).
+- CRUD recettes + règles d’ownership (backend [backend/src/controllers/recipeController.js](backend/src/controllers/recipeController.js), routes [backend/src/routes/recipeRoutes.js](backend/src/routes/recipeRoutes.js), frontend [frontend/src/pages/Recipes.svelte](frontend/src/pages/Recipes.svelte), [frontend/src/pages/RecipeNew.svelte](frontend/src/pages/RecipeNew.svelte), [frontend/src/pages/RecipeEdit.svelte](frontend/src/pages/RecipeEdit.svelte), [frontend/src/pages/RecipeDetail.svelte](frontend/src/pages/RecipeDetail.svelte)).
+- Back‑office admin (API + UI) (routes [backend/src/routes/adminRoutes.js](backend/src/routes/adminRoutes.js), pages [frontend/src/pages/admin/Dashboard.svelte](frontend/src/pages/admin/Dashboard.svelte), [frontend/src/pages/admin/Recipes.svelte](frontend/src/pages/admin/Recipes.svelte), [frontend/src/pages/admin/Categories.svelte](frontend/src/pages/admin/Categories.svelte), [frontend/src/pages/admin/Media.svelte](frontend/src/pages/admin/Media.svelte), [frontend/src/pages/admin/Users.svelte](frontend/src/pages/admin/Users.svelte)).
+- Métadonnées catégories/médias (backend [backend/src/controllers/metadataController.js](backend/src/controllers/metadataController.js), routes [backend/src/routes/index.js](backend/src/routes/index.js)).
+
+### Sprint 3 — Finitions, Tests & Intégrations
+- Intégration TMDB (service [backend/src/services/tmdbService.js](backend/src/services/tmdbService.js), routes [backend/src/routes/tmdbRoutes.js](backend/src/routes/tmdbRoutes.js), page [frontend/src/pages/Movies.svelte](frontend/src/pages/Movies.svelte)).
+- Génération de recette via Mistral (service [backend/src/services/mistralService.js](backend/src/services/mistralService.js), endpoint [backend/src/routes/recipeRoutes.js](backend/src/routes/recipeRoutes.js), UI [frontend/src/pages/RecipeNew.svelte](frontend/src/pages/RecipeNew.svelte)).
+- Tests unitaires & intégration (tests [backend/tests](backend/tests), config [backend/jest.config.js](backend/jest.config.js)).
+- Ops API: healthcheck + 404 propre (app [backend/src/app.js](backend/src/app.js#L66-L75)).
+
+---
+
 ## 🧱 Stack technique réelle (avec emplacements)
 
 ### Frontend
