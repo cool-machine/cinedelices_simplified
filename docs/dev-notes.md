@@ -12,6 +12,16 @@ SPA Svelte (frontend) + API REST Express (backend) + PostgreSQL/Sequelize. Auth 
 
 ## 🏃 Sprints (réalisés)
 
+### Sprint 0 — Conception
+- Exigences cadrées depuis [docs/requirements/CinéDélices.md](docs/requirements/CinéDélices.md) :
+    - MVP : catalogue (recherche + filtres), page recette (ingrédients/instructions/anecdote), auth, ajout recette, back‑office.
+    - Contraintes : sécurité, API à consommer, responsive, accessibilité, RGPD, SEO, versioning, déploiement (procédure).
+- Wireframes réalisés.
+- Maquettes (mockups) réalisées.
+- MCD (Modèle Conceptuel de Données) défini.
+- MLD (Modèle Logique de Données) défini.
+- MPD (Modèle Physique de Données) défini.
+
 ### Sprint 1 — Mise en Place (Setup Technique)
 - Backend Express opérationnel + routage principal (entry [backend/server.js](backend/server.js), app [backend/src/app.js](backend/src/app.js), router [backend/src/routes/index.js](backend/src/routes/index.js)).
 - Modèles Sequelize + migrations/seeders (models [backend/src/models](backend/src/models), migrations [backend/src/migrations](backend/src/migrations), seeders [backend/src/seeders](backend/src/seeders)).
