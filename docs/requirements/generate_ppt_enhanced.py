@@ -536,7 +536,7 @@ def create_enhanced_presentation():
     
     # 17. Bilan Sprint 0
     add_slide_with_content("8. Bilan Sprint 0", [
-        "**Livrables Complétés** ✅",
+        "**Travaux Complétés** ✅",
         "",
         "* ✅ **Cahier des charges** validé",
         "* ✅ **Design System** défini",
